@@ -48,7 +48,7 @@
                             <li>Page active</li>
                         </ul>
                     </div>
-                    <h1>TIM TÀI KHOẢN  HOẶC TẠO TÀI KHOẢN</h1>
+                    <h1>TIM TÀI KHOẢN HOẶC TẠO TÀI KHOẢN</h1>
                 </div>
                 <!-- /page_header -->
                 <div class="row justify-content-center">
@@ -57,15 +57,19 @@
                             <h3 class="client">Tài khoản</h3>
 
                             <div class="form_container">
-                                <?php
-                                if (isset($thongbao) && ($thongbao != ""))
-                                    echo $thongbao;
-                                ?>
+                               
                                 <div id="">
                                     <form action="index.php?act=quenmk" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="email"
-                                                id="email_forgot" placeholder="Nhập lại email của bạn">
+                                            <input type="email" class="form-control" name="email" id="email_forgot"
+                                                placeholder="Nhập lại email của bạn">
+                                            <?php
+                                            if (isset($thongbao) && ($thongbao != ""))
+                                                echo $thongbao;
+                                            ?>
+
+                                            </span>
+
                                         </div>
                                         <p>Mật khẩu mới sẽ sớm được gửi.</p>
                                         <div class="text-center"><input type="submit" value="Gửi lại mật khẩu"

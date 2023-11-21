@@ -77,30 +77,19 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "dangnhap":
             if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
-                $pass = $_POST['pass'];
                 $user = $_POST['user'];
+                $pass = $_POST['pass'];
                 $checkuser = checkuser($user, $pass);
                 if (is_array($checkuser)) {
                     $_SESSION['user'] = $checkuser;
-                    header('location:index.php');
+                    echo '<script>alert("Chúc mừng đăng nhập thành công");</script>';
+                    // header('Location:index.php?act=home');
+                    echo "<script>window.location.href='index.php';</script>";
                 } else {
-                    $thongbao = '<script>
-                    var thongbao = new Object();
-                    thongbao.name = "tài khoản của bạn không tồn tại" ;
-                   
-                   
-                    thongbao.intro = function() {
-                        alert( "tài khoản của bạn không tồn tại");
-            
-            
-                    }
-                  
-                    thongbao.intro();
-                </script>';
+                    echo '<script>alert("Tài khoản không tồn tại");</script>';
                 }
-                ;
             }
-            include "view/taikhoan/dangki-dangnhap.php";
+            include "taikhoan/dangki-dangnhap.php";
 
 
             break;
@@ -112,33 +101,60 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $diachi = $_POST['diachi'];
                 $tel = $_POST['tel'];
                 $id_tk = $_POST['id_tk'];
-                update_taikhoan($id_tk, $user, $pass, $email, $diachi, $tel);
+                update_taikhoan($id_tk, $user, $pass, $diachi, $tel);
                 $_SESSION['user'] = checkuser($user, $pass);
-                header('location:index.php?act=edit_taikhoan');
-
+                echo "<script>window.location.href='index.php?act=edit_taikhoan';</script>";
             }
             include "taikhoan/edit_taikhoan.php";
             break;
         case 'quenmk':
-            if(isset($_POST['guiemail'])&&($_POST['guiemail'])){
+
+            if (isset($_POST['guimail']) && ($_POST['guimail'])) {
                 $email = $_POST['email'];
-                $checkemail =  checkemail($email);
+                $checkemail = checkemail($email);
                 if (is_array($checkemail)) {
-                    $thongbao = "mat khau cua ban la:" . $checkemail['pass'];
+                            $thongbao = '<script>
+                            var thongbao = new Object();
+                            thongbao.name = "mật khẩu của bạn là:";
+                            thongbao.name2="'. $checkemail['pass'] .'";
+                        
+                        
+                            thongbao.intro = function() {
+                                alert( "mật khẩu của bạn là:'. $checkemail['pass'] .'");
+                    
+                    
+                            }
+                        
+                            thongbao.intro();
+                        </script>' ;
                 } else {
-                    $thongbao = "email nay ko ton tai";
+                    $thongbao ='<script>
+                    var thongbao = new Object();
+                    thongbao.name = "email này không tồn tại!" ;
+                   
+                   
+                    thongbao.intro = function() {
+                        alert( "email này không tồn tại!");
+            
+            
+                    }
+                  
+                    thongbao.intro();
+                </script>';
                 }
             }
             include "taikhoan/quenmk.php";
             break;
         case 'thoat':
             //code//
-            session_unset();
-            header('location:index.php ');
-        default:
-            //code//
-            include "view/home.php";
-            break;
+            if (isset($_SESSION['user'])) {
+                unset($_SESSION['user']);
+            }
+            echo "<script>window.location.href='index.php?act=edit_taikhoan';</script>";
+        /*         default:
+                    //code//
+                    include "view/home.php";
+                    break; */
     }
 } else {
     include "home.php";

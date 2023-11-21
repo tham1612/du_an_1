@@ -3,6 +3,21 @@ function insert_sanpham($tensp,$giasp,$hinh,$mota,$iddm){
     $sql="insert into sanpham(name,price,img,mota,iddm) values('$tensp','$giasp','$hinh','$mota','$iddm')";
     pdo_execute($sql);
 }
+/* function loadall_sanpham($kyw="",$iddm=0){
+    $sql = "SELECT sanpham.*, COUNT(binhluan.id_bl) as soBinhLuan
+    FROM sanpham LEFT JOIN binhluan ON binhluan.id_sp = sanpham.id_pr WHERE 1";
+    if ($kyw != "") {
+    $sql .= " AND sanpham.name LIKE '%" . $kyw . "%'";
+    }
+    if ($iddm > 0) {
+    $sql .= " AND sanpham.iddm = '" . $iddm . "'";
+    }
+    $sql .= " GROUP BY sanpham.id_pr
+        ORDER BY sanpham.id_pr DESC";
+        $listsanpham=pdo_query($sql);
+    return $listsanpham;
+
+} */
 function loadall_sanpham(  $kyw="",$iddm=0){
     $sql="select * from sanpham where 1 ";
      if($kyw!=""){

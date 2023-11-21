@@ -81,7 +81,7 @@
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
-                                        <div class="float-end"><a id="" href="quenmk.php ">Quên mật khẩu?</a>
+                                        <div class="float-end"><a id="" href="index.php?act=quenmk ">Quên mật khẩu?</a>
                                         </div>
                                     </div>
                                     <div class="text-center"><input type="submit" value="Đăng Nhập"

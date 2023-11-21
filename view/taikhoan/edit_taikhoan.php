@@ -45,7 +45,7 @@
                 extract($_SESSION['user']);
             }
             ?>
-            <form action="index.php?act=edit_taikhoan" method="post">
+            <form action="index.php?act=edit_taikhoan" method="post" >
                 <div class="form-group">
                     <label for="">User:</label>
                     <input type="text" class="form-control" required name="user" value="<?= $user ?>">
@@ -66,8 +66,7 @@
                     <label for="">tel:</label>
                     <input type="text" class="form-control" name="tel" required value="<?= $tel ?>">
                 </div>
-                <input type="hidden" name="id_tk" value="<?=$id_tk?>">
-
+                <input type="hidden" name="id_tk"value="<?php if(isset($id_tk)&&($id_tk)>0) echo $id_tk; ?>">
                 <button type="submit" class="btn btn_1 " name="capnhat">Cập nhập </button>
                 <button type="reset" class="btn btn_1 ">Nhập lại</button>
             </form>
