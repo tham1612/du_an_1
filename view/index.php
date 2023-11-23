@@ -32,7 +32,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             } else {
                 $iddm = 0;
             }
-
+            $dsdm2=sosanphamcuatungdanhmuc();
             $dssp = loadall_sanpham($kyw, $iddm);
             $namedm = loadone_ten_dm($iddm);
             include "sp.php";

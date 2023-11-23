@@ -37,7 +37,7 @@ function loadone_danhmuc($id)
     return $dm;
 }
 function sosanphamcuatungdanhmuc(){
-    $sql="SELECT  COUNT(sanpham.iddm) AS sosanpham
+    $sql="SELECT danhmuc.namedm, COUNT(sanpham.iddm) AS sosanpham
     FROM danhmuc
     LEFT JOIN sanpham ON sanpham.iddm = danhmuc.id
     GROUP BY danhmuc.id
