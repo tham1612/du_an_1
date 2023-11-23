@@ -18,15 +18,16 @@ function insert_sanpham($tensp,$giasp,$hinh,$mota,$iddm){
     return $listsanpham;
 
 } */
-function loadall_sanpham(  $kyw="",$iddm=0){
+function loadall_sanpham($kyw="",$iddm=0){
     $sql="select * from sanpham where 1 ";
      if($kyw!=""){
-        $sql.=" and name like '%".$kyw."%'";
+        $sql .= " and sanpham.name like '%" .$kyw. "%'";
      }
      if($iddm>0){
-        $sql.=" and iddm='".$iddm."'";
+        $sql .= " and sanpham.iddm='" .$iddm. "'";
      }
-    $sql.= " order by id_pr desc";
+    $sql.= " GROUP BY sanpham.id_pr
+     order by sanpham.id_pr desc";
     $listsanpham=pdo_query($sql);
     return $listsanpham;
 }
@@ -55,16 +56,7 @@ function loadall_sanpham_home_top10(){
     $listsanpham=pdo_query($sql);
     return $listsanpham;
 }
-function loadone_ten_dm($iddm){
-    if($iddm>0){
-        $sql="select * from danhmuc where id=".$iddm;
-        $dm=pdo_query_one($sql);
-        extract($dm);
-        return $dm;
-    }else{
-        return"";
-    }
-}
+
 function load_sanpham_cungloai($id_pr,$iddm){
     $sql="select * from sanpham where iddm=".$iddm." AND id_pr <>".$id_pr;
     $listsanpham=pdo_query($sql);

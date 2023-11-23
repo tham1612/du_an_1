@@ -50,7 +50,7 @@
                 <td>' . $price . ' </td>
                 <td>' . $mota . ' </td>
                 <td>' . $luotxem . ' </td>
-                <td><a href="' . $suasp . ' "><input type="button" value="sửa"></a> ,<a href="' . $xoasp . ' "><input type="button" value="xóa"></a></td>
+                <td><a href="' . $suasp . ' "><input type="button" value="sửa"></a> ,<a href="' . $xoasp . ' " ><input type="button" value="xóa" ></a></td>
                  </tr>';
                 }
                 ?>

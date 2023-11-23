@@ -36,7 +36,7 @@
 </head>
 
 <body>
-   
+
 
     <div id="page">
         <main>
@@ -155,33 +155,39 @@
                         extract($sp);
                         $hinh = $img_path . $img;
                         $linksp = "index.php?act=sanphamct&idsp=" . $id_pr;
-                        echo '  <div class="col-6 col-md-4 col-xl-3">   
-                            <div class="item">
-                                <div class="grid_item ">
-                                    <figure>
-                                        <span class="ribbon off">-30%</span>
-                                        <a href="' . $linksp . '">
-                                            <img class="img-fluid lazy" src="' . $hinh . '"  alt=""   height="400px"width="400px">
-                                        
-                                        </a>                         
-                                    </figure>
-                                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                                    <a href="product-detail-1.html">
-                                        <h3>' . $name . '</h3>
-                                    </a>
-                                    <div class="price_box">
-                                        <span class="new_price">' . $price . '</span>
-                                        <span class="old_price">$60.00</span>
-                                    </div>
-                                    <ul>
-                                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                                    </ul>
-                      
-                                </div>
-                            </div>
-                            </div>';
+                        echo '  <div class="col-6 col-md-4 col-xl-3"> 
+                                    <form action="index.php?act=addcart" method="post">  
+                                        <div class="item">
+                                            <div class="grid_item ">
+                                                <figure>
+                                                    <span class="ribbon off">-30%</span>
+                                                    <a href="' . $linksp . '">
+                                                        <img class="img-fluid lazy" src="' . $hinh . '"  alt=""   height="400px"width="400px">
+                                                    
+                                                    </a>                         
+                                                </figure>
+                                                <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+                                                <a href="product-detail-1.html">
+                                                    <h3>' . $name . '</h3>
+                                                </a>
+                                                <div class="price_box">
+                                                    <span class="new_price">' . $price . '</span>
+                                                    <span class="old_price">$60.00</span>
+                                                </div>
+                                                <ul>
+                                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+                                                    <li><a href="index.php?act=addcart" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart" ><i><input class="ti-shopping-cart" name="addtocart" type="submit" ></i><span>Add to cart</span></a></li>
+                                                </ul>
+                                
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="id_pr" value="'.$id_pr.'">
+                                        <input type="hidden" name="hinh" value="'.$hinh.'">
+                                        <input type="hidden" name="giasp" value="' . $price . '">
+                                        <input type="hidden" name="tensp" value="'.$name.'">
+                                     </form>
+                                </div>';
                     }
                     ?>
 
@@ -382,7 +388,7 @@
                 </div>
                 <!-- /row -->
             </div>
-            
+
             <!-- /container -->
         </main>
         <!-- /main -->

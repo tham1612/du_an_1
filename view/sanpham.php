@@ -44,18 +44,20 @@
    
     <div class="container margin_60_35">
         <div class="main_title">
-            <h2>SAN PHAM CUNG LOAI
-                <?php echo $tendm; ?>
+            <h2><?= $namedm; ?>
+                
             </h2>
             <span>Products</span>
             <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
             <?php
-            foreach (  $dssp as $a) {
-                extract($a);
-                $linksp = "index.php?act=sanphamct&idsp=" . $id_pr;
-                $hinh = $img_path . $img;
+           
+              foreach ($dssp as $sp) {
+                extract($sp);
+                
+                $linksp = "index.php?act=sanpham&idsp=" . $id_pr;
+                $hinh = $img_spsppath . $img;
                 echo ' <div class="item">
                                     <div class="grid_item">
                                         <span class="ribbon new">New</span>
