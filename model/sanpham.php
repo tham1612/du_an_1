@@ -33,6 +33,7 @@ function loadall_sanpham($kyw="",$iddm=0){
 }
 
 
+
 function loadall_sanpham_home(){
     $sql="select * from sanpham where 1  order by id_pr desc limit 0,8 ";
 
