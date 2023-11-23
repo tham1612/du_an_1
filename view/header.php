@@ -47,7 +47,7 @@
                     <div class="row small-gutters">
                         <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                             <div id="logo">
-                                <a href="index.html"><img src="img/logo.svg" alt="" width="100" height="35"></a>
+                                <a href="index.php"><img src="img/logo.svg" alt="" width="100" height="35"></a>
                             </div>
                         </div>
                         <nav class="col-xl-6 col-lg-7">
@@ -61,7 +61,7 @@
                             <!-- Mobile menu button -->
                             <div class="main-menu">
                                 <div id="header_menu">
-                                    <a href="index.html"><img src="img/logo_black.svg" alt="" width="100"
+                                    <a href="index.php"><img src="img/logo_black.svg" alt="" width="100"
                                             height="35"></a>
                                     <a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
                                 </div>
@@ -80,7 +80,7 @@
                                                 <div class="col-lg-3">
                                                     <h3>BỘ LỌC SẢN PHẨM </h3>
                                                     <ul>
-                                                        <li><a href="locsp.php">Lọc Sản Phẩm</a></li>
+                                                        <li><a href="sp.php">Lọc Sản Phẩm</a></li>
 
                                                     </ul>
                                                 </div>
@@ -92,7 +92,7 @@
                                                         var_dump( $dsdm); */
                                                         foreach ($dsdm as $dm) {
                                                             extract($dm);
-                                                            $linkdm = "index.php?act=sanpham&iddm=" . $iddm;
+                                                            $linkdm = "index.php?act=sanpham&iddm=" . $id;
                                                             echo ' <li><a href="' . $linkdm . ' ">' . $namedm . '</a></li>';
                                                         }
                                                         ?>

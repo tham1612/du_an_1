@@ -47,7 +47,7 @@
                         <div class="container">
                             <div class="d-flex justify-content-center">
                                 <h1>
-                                    <?= $namedm; ?>
+                                Nước hoa thời thượng
                                 </h1>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                                                             <span class="checkmark"></span>
                                                         </label>
                                                         </li>';
-                                                                                }
+                                                    }
                                                     ?>
                                                 </ul>
                                                 <a href="#0" class="apply_filter">Apply</a>
@@ -222,13 +222,16 @@
                 </div>
                 <!-- /toolbox -->
                 <div class="row small-gutters">
+                    <caption class="tt"><h1 >  <?= $namedm; ?></h1></caption>
                     <?php
+                    
                     $i = 0;
-                    foreach ($dssp as $sp) {
-                        extract($sp);
-                        $hinh = $img_path . $img;
-                        $linksp = "index.php?act=sanphamct&idsp=" . $id_pr;
-                        echo '  <div class="col-6 col-md-4 col-xl-3"> 
+                   
+                        foreach ($dssp as $sp) {
+                            extract($sp);
+                            $hinh = $img_path . $img;
+                            $linksp = "index.php?act=sanphamct&idsp=" . $id_pr;
+                            echo '  <div class="col-6 col-md-4 col-xl-3"> 
                                     <form action="index.php?act=addcart" method="post">  
                                         <div class="item">
                                             <div class="grid_item ">
@@ -261,8 +264,10 @@
                                         <input type="hidden" name="tensp" value="' . $name . '">
                                      </form>
                                 </div>';
-                    }
+                        }
+                   
                     ?>
+                    
                     <!--  <div class="col-6 col-md-4 col-xl-3">
                 <div class="grid_item">
                     <figure>

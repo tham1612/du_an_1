@@ -40,7 +40,7 @@
     </style>
 </head>
 <main>
-   
+
     <div class="container margin_30">
         <?php
         extract($onesp);
@@ -73,50 +73,58 @@
                 </div>
                 <!-- /page_header -->
                 <div class="prod_info">
-                    <h1>
-                        <?php echo $name ?>
-                    </h1>
-                    <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                            class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4
-                            đánh giá</em></span>
+                    <form action="index.php?act=addcart" method="post" enctype="">
+                        <h1>
+                            <?php echo $name ?>
+                        </h1>
+                        <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
+                                class="icon-star voted"></i><i class="icon-star voted"></i><i
+                                class="icon-star"></i><em>4
+                                đánh giá</em></span>
 
-                    <div class="prod_options">
+                        <div class="prod_options">
 
-                        <div class="row">
-                            <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a
-                                    href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i
-                                        class="ti-help-alt"></i></a></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                <div class="custom-select-form">
-                                    <select class="wide">
-                                        <option value="" selected>Small (S)</option>
-                                        <option value="">M</option>
-                                        <option value=" ">L</option>
-                                        <option value=" ">XL</option>
-                                    </select>
+                            <div class="row">
+                                <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a
+                                        href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i
+                                            class="ti-help-alt"></i></a></label>
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                    <div class="custom-select-form">
+                                        <select class="wide">
+                                            <option value="" selected>Small (S)</option>
+                                            <option value="">M</option>
+                                            <option value=" ">L</option>
+                                            <option value=" ">XL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số Lượng </strong></label>
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                    <div class="numbers-row">
+                                        <input type="text" value="1" id="quantity_1" class="qty2" name="sl">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số Lượng </strong></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                <div class="numbers-row">
-                                    <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
-                                </div>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="price_main"><span class="new_price">$148.00</span><span
+                                        class="percentage">-20%</span> <span class="old_price">
+                                        <?php echo $price ?>
+                                    </span></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                            <a href="index.php?act=addcart" class="btn_1"><input class="btn_add_to_cart" type="submit" name="addtocart">Add to Cart</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="price_main"><span class="new_price">$148.00</span><span
-                                    class="percentage">-20%</span> <span class="old_price">
-                                    <?php echo $price ?>
-                                </span></div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>
-                        </div>
-                    </div>
+                        <input type="hidden" name="id_pr" >
+                                        <input type="hidden" name="hinh" >
+                                        <input type="hidden" name="giasp" >
+                                        <input type="hidden" name="tensp" >
+                                        <input type="hidden" name="sl" >
+                    </form>
                 </div>
                 <!-- /prod_info -->
                 <div class="product_actions">
@@ -302,7 +310,8 @@
                 extract($a);
                 $linksp = "index.php?act=sanphamct&idsp=" . $id_pr;
                 $hinh = $img_path . $img;
-                echo ' <div class="item">
+                echo '  <form action="index.php?act=addcart" method="post">  
+                <div class="item">
                                     <div class="grid_item">
                                         <span class="ribbon new">New</span>
                                         <figure>
@@ -324,11 +333,15 @@
                                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                                     title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
                                             </li>
-                                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                                            <li><a href="index.php?act=addcart" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart" ><i><input class="ti-shopping-cart" name="addtocart" type="submit" ></i><span>Add to cart</span></a></li>
                                         </ul>
                                     </div>
                                     <!-- /grid_item -->
+                                    <input type="hidden" name="id_pr" value="' . $id_pr . '">
+                                        <input type="hidden" name="hinh" value="' . $hinh . '">
+                                        <input type="hidden" name="giasp" value="' . $price . '">
+                                        <input type="hidden" name="tensp" value="' . $name . '">
+                                    </form>
                           </div>';
             }
             ?>

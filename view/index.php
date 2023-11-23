@@ -2,7 +2,8 @@
 
 session_start();
 ob_start();
-if(!isset($_SESSION['giohang']))$_SESSION['giohang']=[];
+if (!isset($_SESSION['giohang']))
+    $_SESSION['giohang'] = [];
 include "../model/pdo.php";
 include "../model/sanpham.php";
 include "../model/danhmuc.php";
@@ -13,10 +14,10 @@ if (isset($_GET['iddm']) && ($_GET['iddm'])) {
 } else {
     $iddm = 0;
 }
+$namedm = loadone_ten_dm($iddm);
 include "header.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
-$allsp = loadall_sanpham();
 $dstop10 = loadall_sanpham_home_top10();
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
@@ -32,7 +33,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             } else {
                 $iddm = 0;
             }
-            $dsdm2=sosanphamcuatungdanhmuc();
+            $allsp = loadall2_sanpham();
+            $dsdm2 = sosanphamcuatungdanhmuc();
             $dssp = loadall_sanpham($kyw, $iddm);
             $namedm = loadone_ten_dm($iddm);
             include "sp.php";
@@ -115,22 +117,22 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $email = $_POST['email'];
                 $checkemail = checkemail($email);
                 if (is_array($checkemail)) {
-                            $thongbao = '<script>
+                    $thongbao = '<script>
                             var thongbao = new Object();
                             thongbao.name = "mật khẩu của bạn là:";
-                            thongbao.name2="'. $checkemail['pass'] .'";
+                            thongbao.name2="' . $checkemail['pass'] . '";
                         
                         
                             thongbao.intro = function() {
-                                alert( "mật khẩu của bạn là:'. $checkemail['pass'] .'");
+                                alert( "mật khẩu của bạn là:' . $checkemail['pass'] . '");
                     
                     
                             }
                         
                             thongbao.intro();
-                        </script>' ;
+                        </script>';
                 } else {
-                    $thongbao ='<script>
+                    $thongbao = '<script>
                     var thongbao = new Object();
                     thongbao.name = "email này không tồn tại!" ;
                    
@@ -155,27 +157,50 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             echo "<script>window.location.href='index.php';</script>";
         case 'addcart':
-            if(isset($_SESSION['user'])){
-                if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
-                    $id_pr=$_POST['id_pr'];
-                    $tensp=$_POST['tensp'];
-                    $img=$_POST['hinh'];
-                    $gia=$_POST['giasp'];  
-                    $sl=1;
-                    $item=array($id_pr,$tensp,$img,$gia,$sl);
-                    $_SESSION['giohang'][]=$item;
+            if (isset($_SESSION['user'])) {
+                if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
+                    $id_pr = $_POST['id_pr'];
+                    $tensp = $_POST['tensp'];
+                    $img = $_POST['hinh'];
+                    $gia = $_POST['giasp'];
+                    if(isset($_POST['sl']) &&($_POST['sl'])>0){
+                        $sl=$_POST['sl'];
+                    }else{
+                        $sl = 1;
+                    }
                  
+                    $fg = 0;
+                    $i=0;
+                    foreach ($_SESSION['giohang'] as $item) {
+                        if ($item[1] === $tensp) {
+                            $slnew = $sl + $item[4];
+                            $_SESSION['giohang'][$i][4] = $slnew;
+                            $fg = 1;
+                            break;
+                        }
+                        $i++;
+                    }
+                    if ($fg == 0) {
+                      
+                        $item = array($id_pr, $tensp, $img, $gia, $sl);
+                        $_SESSION['giohang'][] = $item;
+                    }
+                   
                 }
                 include "giohang.php";
-            }else{
+            } else {
                 echo "<script>alert('vui lòng đăng nhập để thêm vào giỏ hàng')</script>";
                 echo "<script>window.location.href='index.php?act=dangnhap';</script>";
             }
-            
+
             break;
-            case'decart':
-                if(isset($_POST['addtocart']))
-                break;
+        case 'decart':
+            if (isset($_POST['xoagiohang']) && ($_POST['xoagiohang']))
+            unset($_SESSION['giohang']);
+
+            /* echo "<script>window.location.href='index.php';</script>"; */
+            include "index.php";
+            break;
 
         /*         default:
                     //code//

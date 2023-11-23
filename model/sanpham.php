@@ -31,6 +31,11 @@ function loadall_sanpham($kyw="",$iddm=0){
     $listsanpham=pdo_query($sql);
     return $listsanpham;
 }
+function loadall2_sanpham(){
+    $sql="select * from sanpham where 1  order by sanpham.id_pr desc ";
+    $listsanpham=pdo_query($sql);
+    return $listsanpham;
+}
 
 
 
