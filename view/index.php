@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-
+ob_start();
+if(!isset($_SESSION['giohang']))$_SESSION['giohang']=[];
 include "../model/pdo.php";
 include "../model/sanpham.php";
 include "../model/danhmuc.php";
@@ -15,6 +16,7 @@ if (isset($_GET['iddm']) && ($_GET['iddm'])) {
 include "header.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
+$allsp = loadall_sanpham();
 $dstop10 = loadall_sanpham_home_top10();
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
@@ -32,8 +34,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
 
             $dssp = loadall_sanpham($kyw, $iddm);
-            $tendm = loadone_ten_dm($iddm);
-            include "sanpham.php";
+            $namedm = loadone_ten_dm($iddm);
+            include "sp.php";
             break;
         case 'sanphamct':
             if (isset($_GET['idsp']) && ($_GET['idsp'])) {
@@ -147,10 +149,34 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'thoat':
             //code//
+            session_unset();
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
             }
-            echo "<script>window.location.href='index.php?act=edit_taikhoan';</script>";
+            echo "<script>window.location.href='index.php';</script>";
+        case 'addcart':
+            if(isset($_SESSION['user'])){
+                if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
+                    $id_pr=$_POST['id_pr'];
+                    $tensp=$_POST['tensp'];
+                    $img=$_POST['hinh'];
+                    $gia=$_POST['giasp'];  
+                    $sl=1;
+                    $item=array($id_pr,$tensp,$img,$gia,$sl);
+                    $_SESSION['giohang'][]=$item;
+                 
+                }
+                include "giohang.php";
+            }else{
+                echo "<script>alert('vui lòng đăng nhập để thêm vào giỏ hàng')</script>";
+                echo "<script>window.location.href='index.php?act=dangnhap';</script>";
+            }
+            
+            break;
+            case'decart':
+                if(isset($_POST['addtocart']))
+                break;
+
         /*         default:
                     //code//
                     include "view/home.php";

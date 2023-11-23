@@ -14,6 +14,16 @@ function loadall_danhmuc()
     return $listdanhmuc;
 
 }
+function loadone_ten_dm($iddm){
+    if($iddm>0){
+        $sql="select * from danhmuc where id=".$iddm;
+        $dm=pdo_query_one($sql);
+        extract($dm);
+        return $namedm;
+    }else{
+        return"";
+    }
+}
 
 function delete_danhmuc($id)
 {
