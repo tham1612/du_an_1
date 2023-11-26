@@ -31,6 +31,21 @@ function loadall_sanpham($kyw="",$iddm=0){
     $listsanpham=pdo_query($sql);
     return $listsanpham;
 }
+function result_sanpham($limit,$start){
+    $sql = "SELECT * FROM sanpham ORDER BY id_pr DESC LIMIT $start,$limit";
+    $result = pdo_query($sql);
+    return $result;
+}
+function alll_row_sanpham(){
+    $sql ="SELECT COUNT(sanpham.id_pr) FROM sanpham ";
+    $result = pdo_query($sql);
+    return $result;
+}
+function loadall2_sanpham(){
+    $sql="select * from sanpham where 1  order by sanpham.id_pr desc ";
+    $listsanpham=pdo_query($sql);
+    return $listsanpham;
+}
 
 
 

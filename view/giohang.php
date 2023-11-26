@@ -73,25 +73,30 @@
                         if(isset($_SESSION['giohang'])&&(count($_SESSION['giohang']))>0){
                            foreach($_SESSION['giohang'] as $item){
                             extract($item);
-                         
+                            $tt=$item[3]*$item[4];
+                            $linksp = "index.php?act=sanphamct&idsp=";
                             echo'<tr>
                             <td>
                                 <div class="thumb_cart">
-                                    <img src=" '.$item[2].'" class="lazy" alt="Image">
+                                <a href="' . $linksp . '"><img src=" '.$item[2].'" class="lazy" alt="Image"></a>
                                 </div>
                                 <span class="item_cart">'.$item[1].'</span>
                             </td>
                             <td>
-                                <strong>'.$item['3'].'</strong>
+                                <strong>'.($item['3']).'</strong>
                             </td>
                             <td>
+                          
+                            
                                 <div class="numbers-row">
-                                    <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
+                                    <input type="text" value="'.$item[4].'" id="quantity_1" class="qty2" name="sl">
                                   
                                 </div>
+                               
+                               
                             </td>
                             <td>
-                                <strong>'. $item[3].'</strong>
+                                <strong>'.($tt).'</strong>
                             </td>
                             <td class="options">
                                 <a href="#"><i class="ti-trash"></i></a>
@@ -178,8 +183,11 @@
 
                 <div class="row add_top_30 flex-sm-row-reverse cart_actions">
                     <div class="col-sm-4 text-end">
+                    <a href="index.php"><button type="button" class="btn_1 gray" name="xoagiohang">Tiếp tục mua hàng</button></a>
                         <button type="button" class="btn_1 gray">Update Cart</button>
+                        <a href="index.php?act=delcart"><button type="button" class="btn_1 gray" name="xoagiohang">Xoa gio hang</button></a>
                     </div>
+                    
                     <div class="col-sm-8">
                         <div class="apply-coupon">
                             <div class="form-group">

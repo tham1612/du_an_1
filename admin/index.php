@@ -90,7 +90,7 @@ if (isset($_GET['act'])) {
             include "sanpham/add.php";
             break;
         case 'listsp':
-            if (isset($_POST['listok']) && ($_POST['listok'])) {
+            /* if (isset($_POST['listok']) && ($_POST['listok'])) {
                 $kyw = $_POST['kyw'];
                 $iddm = $_POST['iddm'];
             } else {
@@ -98,7 +98,16 @@ if (isset($_GET['act'])) {
                 $iddm = 0;
             }
             $listdanhmuc = loadall_danhmuc();
-            $listsanpham = loadall_sanpham($kyw, $iddm);
+            $listsanpham = loadall_sanpham($kyw, $iddm); */
+            $limit = 5;
+            if(isset($_GET['page'])){
+                $page = $_GET['page'];
+
+            }else{
+                $page = 1;
+            }
+            $start = ($page - 1) * $limit;
+            $result_sanpham = result_sanpham($limit,$start);
             include "sanpham/list.php";
             break;
         case 'xoasp':
