@@ -52,16 +52,10 @@
         <div class="row">
             <div class="col-md-6">
                 <!--  <img src="img/products/shoes/3.jpg" alt=""> -->
-                <?php
+            <?php
                 $img = $img_path . $img;
                 echo '<img src="' . $img . '" alt="">'
-                    ?>
-
-
-
-
-
-
+            ?>
             </div>
             <div class="col-md-6">
                 <div class="breadcrumbs">
@@ -73,7 +67,7 @@
                 </div>
                 <!-- /page_header -->
                 <div class="prod_info">
-                    <form action="index.php?act=addcart" method="post" enctype="">
+                 <!--    <form action="index.php?act=addcart" method="post" enctype=""> -->
                         <h1>
                             <?php echo $name ?>
                         </h1>
@@ -116,14 +110,15 @@
                                     </span></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                            <a href="index.php?act=addcart" class="btn_1"><input class="btn_add_to_cart" type="submit" name="addtocart">Add to Cart</a>
+                                <a href="#" class="btn_1"><input class="btn_add_to_cart"
+                                        type="submit" name="">Add to Cart</a>
                             </div>
                         </div>
-                        <input type="hidden" name="id_pr" >
-                                        <input type="hidden" name="hinh" >
-                                        <input type="hidden" name="giasp" >
-                                        <input type="hidden" name="tensp" >
-                                        <input type="hidden" name="sl" >
+                        <input type="hidden" name="id_pr">
+                        <input type="hidden" name="hinh">
+                        <input type="hidden" name="giasp">
+                        <input type="hidden" name="tensp">
+                        <input type="hidden" name="sl">
                     </form>
                 </div>
                 <!-- /prod_info -->
@@ -178,6 +173,7 @@
 
                                     <p>
                                         <?php echo $mota ?>
+                                        
                                     </p>
                                 </div>
                                 <div class="col-lg-5">
@@ -222,76 +218,51 @@
                     </div>
                     <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
                         <div class="card-body">
-                            <div class="row justify-content-between">
-                                <div class="col-lg-6">
-                                    <div class="review_content">
-                                        <div class="clearfix add_bottom_10">
-                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><em>5.0/5.0</em></span>
-                                            <em>Published 54 minutes ago</em>
-                                        </div>
-                                        <h4>"Commpletely satisfied"</h4>
-                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea.
-                                            Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere
-                                            fabulas has ut. Rebum laudem cum ea, ius essent fuisset
-                                            ut. Viderer petentium cu his.</p>
-                                    </div>
+                        <div class="row justify-content-between">
+                    <div class="col-lg-6">
+                        <?php
+                        foreach ($dsbl as $bl){
+                            extract($bl);
+                            echo '<div class="review_content">
+                            <div class="clearfix add_bottom_10">
+                                <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
+                                        class="icon-star"></i><i class="icon-star"></i><i
+                                        class="icon-star"></i><em>5.0/5.0</em></span>
+                                <em> ' . $ngaybinhluan . '</em>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="review_content">
-                                        <div class="clearfix add_bottom_10">
-                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><i class="icon-star empty"></i><i
-                                                    class="icon-star empty"></i><em>4.0/5.0</em></span>
-                                            <em>Published 1 day ago</em>
-                                        </div>
-                                        <h4>"Always the best"</h4>
-                                        <p>Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere
-                                            fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer
-                                            petentium cu his.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /row -->
-                            <div class="row justify-content-between">
-                                <div class="col-lg-6">
-                                    <div class="review_content">
-                                        <div class="clearfix add_bottom_10">
-                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star empty"></i><em>4.5/5.0</em></span>
-                                            <em>Published 3 days ago</em>
-                                        </div>
-                                        <h4>"Outstanding"</h4>
-                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea.
-                                            Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere
-                                            fabulas has ut. Rebum laudem cum ea, ius essent fuisset
-                                            ut. Viderer petentium cu his.</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="review_content">
-                                        <div class="clearfix add_bottom_10">
-                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><em>5.0/5.0</em></span>
-                                            <em>Published 4 days ago</em>
-                                        </div>
-                                        <h4>"Excellent"</h4>
-                                        <p>Sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius
-                                            essent fuisset ut. Viderer petentium cu his.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /row -->
-                            <p class="text-end"><a href="leave-review.html" class="btn_1">Leave a review</a></p>
+                                <h4>   ' . $user . '</h4>
+                                <p>   ' . $noidung . '</p>
+                            </div>';
+                        } ?>
+                    </div>
+
+                </div>
+                    <!-- /row -->
+                    <?php if (isset($_SESSION['user'])) {
+                        ?>
+                        <form action="index.php?act=sanphamct&idsp =<?= $idpro ?>" method="post">
+                            
+                            <input type="text" placeholder="nhap noi dung binh luan " name="noidung">
+                            <input type="submit" name="guibinhluan" value="Gửi ">
+
+                        </form>
+                    <?php } else { ?>
+
+                        <?php
+                        echo "<script>alert('vui lòng đăng nhập để binh luan')</script>";
+                        ?>
+
+                    <?php } ?>
+                           
+                       
+
                         </div>
                         <!-- /card-body -->
                     </div>
                 </div>
                 <!-- /tab B -->
             </div>
+         
             <!-- /tab-content -->
         </div>
         <!-- /container -->

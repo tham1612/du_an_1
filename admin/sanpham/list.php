@@ -1,21 +1,7 @@
 <div class="page-wrapper">
     <div class="row">
         <div class="card-body">
-            <?php
-     
-         /* 
-            $total_records =loadone_sanpham($id_pr) ;
-            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-            $limit = 10;
-            $total_page = ceil( $total_records/ $limit);
-            if ($current_page > $total_page) {
-                $current_page = $total_page;
-            } else if ($current_page < 1) {
-                $current_page = 1;
-            }
-            $start = ($current_page - 1) * $limit;
-            $result = ( "SELECT * FROM sanpham LIMIT $start, $limit"); */
-            ?>
+
             <h1 class="card-title">Danh Sách Sản Phẩm </h1>
 
             <table>
@@ -30,7 +16,7 @@
                     <th></th>
                 </tr>
                 <?php
-                foreach ($listsanpham as $sanpham) {
+                foreach ($result_sanpham as $sanpham) {
                     extract($sanpham);
                     $suasp = "index.php?act=suasp&id_pr=" . $id_pr;
                     $xoasp = "index.php?act=xoasp&id_pr=" . $id_pr;
@@ -73,26 +59,21 @@
 
             ?>
 
-            <div class="paginnation">
+            <div class="phantrang">
                 <?php
-               /*  if ($current_page > 1 && $total_page > 1) {
-                    echo '<a href="list.php?page=' . ($current_page - 1) . '">Prev</a> | ';
-                }
-                for ($i = 1; $i <= $total_page; $i++) {
-                    // Nếu là trang hiện tại thì hiển thị thẻ span
-                    // ngược lại hiển thị thẻ a
-                    if ($i == $current_page) {
-                        echo '<span>' . $i . '</span> | ';
-                    } else {
-                        echo '<a href="list.php?page=' . $i . '">' . $i . '</a> | ';
-                    }
-                }
-
-                // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
-                if ($current_page < $total_page && $total_page > 1) {
-                    echo '<a href="list.php?page=' . ($current_page + 1) . '">Next</a> | ';
-                } */
-                ?>
+                $limit = 5;
+                $all_row = alll_row_sanpham();
+                foreach ($all_row as $row_page):
+                    $all_page = ceil($row_page[0] / $limit);
+                    for ($i = 1; $i < $all_page; $i++): ?>
+                        <a href="index.php?act=listsp&page=<?php echo $i ?>" style="background-color: <?php if ($_GET['page'] == $i) {
+                               echo 'red';
+                           }
+                           ; ?>">
+                            <?php echo $i ?>
+                        </a>
+                    <?php endfor ?>
+                <?php endforeach ?>
             </div>
 
 
@@ -104,3 +85,16 @@
 
     </div>
 </div>
+<style>
+    .phantrang>a{
+        width: 50px;
+        height: 20px;
+        padding: 5px 15px 5px 5px;
+        background-color: black;
+        color: white;
+    }
+    .phantrang{
+        margin-left: 400px;
+        margin-top: 100px;
+    }
+</style>

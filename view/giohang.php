@@ -73,19 +73,21 @@
                         if(isset($_SESSION['giohang'])&&(count($_SESSION['giohang']))>0){
                            foreach($_SESSION['giohang'] as $item){
                             extract($item);
-                         
+                            $tt=$item[3]*$item[4];
+                            $linksp = "index.php?act=sanphamct&idsp=";
                             echo'<tr>
                             <td>
                                 <div class="thumb_cart">
-                                    <img src=" '.$item[2].'" class="lazy" alt="Image">
+                                <a href="' . $linksp . '"><img src=" '.$item[2].'" class="lazy" alt="Image"></a>
                                 </div>
                                 <span class="item_cart">'.$item[1].'</span>
                             </td>
                             <td>
-                                <strong>'.$item['3'].'</strong>
+                                <strong>'.($item['3']).'</strong>
                             </td>
                             <td>
                           
+                            
                                 <div class="numbers-row">
                                     <input type="text" value="'.$item[4].'" id="quantity_1" class="qty2" name="sl">
                                   
@@ -94,7 +96,7 @@
                                
                             </td>
                             <td>
-                                <strong>'.$item[3]*$item[4].'</strong>
+                                <strong>'.($tt).'</strong>
                             </td>
                             <td class="options">
                                 <a href="#"><i class="ti-trash"></i></a>

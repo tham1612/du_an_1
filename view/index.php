@@ -8,6 +8,7 @@ include "../model/pdo.php";
 include "../model/sanpham.php";
 include "../model/danhmuc.php";
 include "../model/taikhoan.php";
+include "../model/binhluan.php";
 $dsdm = loadall_danhmuc();
 if (isset($_GET['iddm']) && ($_GET['iddm'])) {
     $iddm = $_GET['iddm'];
@@ -19,10 +20,12 @@ include "header.php";
 include "global.php";
 $spnew = loadall_sanpham_home();
 $dstop10 = loadall_sanpham_home_top10();
+
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
         case 'sanpham':
+
             if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
                 $kyw = $_POST['kyw'];
             } else {
@@ -40,11 +43,26 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "sp.php";
             break;
         case 'sanphamct':
+            if (isset($_POST['guibinhluan'])) {
+                
+                insert_binhluan($_POST['noidung'],$_POST['idpro']);
+            
+                }
+            
+          /*   if (isset($_POST['guibinhluan']) && ($_POST['guibinhluan'])) {
+                $noidung = $_POST['noidung'];
+                $idpro = $_POST['idpro'];
+                $iduser = $_SESSION['user']['id_tk'];
+                $ngaybinhluan = date('h:i:sa d/m/Y');
+                insert_binhluan($noidung, $iduser, $idpro, $ngaybinhluan);
+                $dsbl = loadall_binhluan($idpro);
+            } */
             if (isset($_GET['idsp']) && ($_GET['idsp'])) {
                 $id = $_GET['idsp'];
                 $onesp = loadone_sanpham($id);
                 extract($onesp);
                 $sp_cung_loai = load_sanpham_cungloai($id_pr, $iddm);
+                $dsbl= loadall_binhluan ($_GET['idsp']);
                 include "sanphamct.php";
             } else {
                 include "view/home.php";
@@ -163,29 +181,31 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $tensp = $_POST['tensp'];
                     $img = $_POST['hinh'];
                     $gia = $_POST['giasp'];
-                    if(isset($_POST['sl']) &&($_POST['sl'])>0){
-                        $sl=$_POST['sl'];
-                    }else{
+                    if (isset($_POST['sl']) && ($_POST['sl']) > 0) {
+                        $sl = $_POST['sl'];
+                    } else {
                         $sl = 1;
                     }
-                 
+
                     $fg = 0;
-                    $i=0;
+                    $i = 0;
                     foreach ($_SESSION['giohang'] as $item) {
                         if ($item[1] === $tensp) {
                             $slnew = $sl + $item[4];
                             $_SESSION['giohang'][$i][4] = $slnew;
                             $fg = 1;
+                          
                             break;
                         }
                         $i++;
                     }
                     if ($fg == 0) {
-                      
+
                         $item = array($id_pr, $tensp, $img, $gia, $sl);
                         $_SESSION['giohang'][] = $item;
+                       
                     }
-                   
+                     $tt=$item[3]*$item[4];
                 }
                 include "giohang.php";
             } else {
@@ -196,7 +216,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'decart':
             if (isset($_POST['xoagiohang']) && ($_POST['xoagiohang']))
-            unset($_SESSION['giohang']);
+                unset($_SESSION['giohang']);
 
             /* echo "<script>window.location.href='index.php';</script>"; */
             include "index.php";
