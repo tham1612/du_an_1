@@ -83,16 +83,26 @@
     </div>
 </div>
 <style>
-    .phantrang>a {
-        width: 50px;
-        height: 20px;
-        padding: 5px 15px 5px 5px;
-        background-color: black;
-        color: white;
-    }
+   .phantrang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
 
-    .phantrang {
-        margin-left: 400px;
-        margin-top: 100px;
-    }
+.phantrang a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+}
+
+.phantrang a.active {
+    background-color: red;
+    color: #fff;
+}
 </style>

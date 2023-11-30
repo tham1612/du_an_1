@@ -4,6 +4,7 @@ include "tulam.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
 include "../model/taikhoan.php";
+include "../model/thongke.php";
 
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -31,7 +32,15 @@ if (isset($_GET['act'])) {
             include "danh mục/add.php";
             break;
         case 'listdm':
-            $listdanhmuc = loadall_danhmuc();
+            $limit = 3;
+            if(isset($_GET['page'])){
+                $page = $_GET['page'];
+
+            }else{
+                $page = 1;
+            }
+            $start = ($page - 1) * $limit;
+            $result_danhmuc = result_danhmuc($limit,$start);
             include "danh mục/list.php";
             break;
         case 'xoadm':
@@ -147,7 +156,15 @@ if (isset($_GET['act'])) {
             include "sanpham/list.php";
             break;
         case 'dskh':
-            $listtaikhoan = loadall_taikhoan();
+            $limit = 4;
+            if(isset($_GET['page'])){
+                $page = $_GET['page'];
+
+            }else{
+                $page = 1;
+            }
+            $start = ($page - 1) * $limit;
+            $result_taikhoan = result_taikhoan($limit,$start);
             include "taikhoan/list.php";
             break;
         case 'xoatk':
@@ -156,7 +173,11 @@ if (isset($_GET['act'])) {
             }
             $listtaikhoan = loadall_taikhoan();
             include "taikhoan/list.php";
-
+          break;
+          case 'thongke':
+            $dsthongke = load_thongke_sanpham_danhmuc();
+            include "thongke/list.php";
+            break;
         default:
             include "home.php";
             break;

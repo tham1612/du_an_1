@@ -22,6 +22,21 @@ function loadall_taikhoan(){
     $listtaikhoan=pdo_query($sql);
     return $listtaikhoan;
 }
+function select_taikhoan(){
+    $sql = "select * from  taikhoan ";
+    $us=pdo_query($sql);
+    return $us;
+}
+function alll_row_taikhoan(){
+    $sql ="SELECT COUNT(taikhoan.id_tk) FROM taikhoan ";
+    $result = pdo_query($sql);
+    return $result;
+}
+function result_taikhoan($limit,$start){
+    $sql = "SELECT * FROM taikhoan ORDER BY id_tk DESC LIMIT $start,$limit";
+    $result = pdo_query($sql);
+    return $result;
+}
 function delete_taikhoan($id_tk){
     $sql="delete from taikhoan where id_tk=".$id_tk;
     pdo_execute($sql);

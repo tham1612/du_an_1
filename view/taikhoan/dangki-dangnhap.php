@@ -138,9 +138,34 @@
                                             class="btn_1 full-width" name="dangky">
                                     </div>
                                     <?php
-                                    if (isset($thongbao1) && ($thongbao1 != ""))
-                                        echo $thongbao1;
+                                      if(isset($_SESSION['err'])){
+                                        foreach($_SESSION['err'] as $thongbao):
+                                      
+                                      
                                     ?>
+                                  <div class="err">
+                                   
+                                 <?php
+                                echo $thongbao;
+
+                                 ?>
+                                  </div>
+                                  <?php
+                                 endforeach
+
+                                  ?>
+                                  <?php
+                                      }
+                                    
+                                  ?>
+                                  <div>
+                                    <?php
+                                   if(isset($_SESSION['success'])){
+                                    echo $_SESSION['success'];
+                                    unset ($_SESSION['success']);
+                                   }
+                                    ?>
+                                  </div>
                                 </div>
                                 <!-- /form_container -->
                             </form>

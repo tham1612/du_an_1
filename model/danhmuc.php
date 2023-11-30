@@ -14,6 +14,16 @@ function loadall_danhmuc()
     return $listdanhmuc;
 
 }
+function result_danhmuc($limit,$start){
+    $sql = "SELECT * FROM danhmuc ORDER BY id DESC LIMIT $start,$limit";
+    $result = pdo_query($sql);
+    return $result;
+}
+function alll_row_danhmuc(){
+    $sql ="SELECT COUNT(danhmuc.id) FROM danhmuc ";
+    $result = pdo_query($sql);
+    return $result;
+}
 function loadone_ten_dm($iddm){
     if($iddm>0){
         $sql="select * from danhmuc where id=".$iddm;

@@ -91,7 +91,7 @@
                                 <li class="sidebar-item"><a href="index.php?act=adddm" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Them Danh Muc
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="index.php?act=listdm" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="index.php?act=listdm&page=1" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Danh Sach Danh Muc
                                         </span></a></li>
                             </ul>
@@ -104,7 +104,7 @@
                                 <li class="sidebar-item"><a href="index.php?act=addsp" class="sidebar-link"><i
                                             class="mdi mdi-emoticon"></i><span class="hide-menu"> Them San
                                             Pham</span></a></li>
-                                <li class="sidebar-item"><a href="index.php?act=listsp" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="index.php?act=listsp&page=1" class="sidebar-link"><i
                                             class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Danh sach san
                                             pham </span></a></li>
                             </ul>
@@ -113,7 +113,7 @@
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span
                                     class="hide-menu">Khách Hàng </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="index.php?act=dskh" class="sidebar-link"><i
+                                <li class="sidebar-item"><a href="index.php?act=dskh&page=1" class="sidebar-link"><i
                                             class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Login </span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="#" class="sidebar-link"><i
@@ -163,8 +163,8 @@
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span
-                                    class="hide-menu">Charts</span></a></li>
+                                href="index.php?act=thongke" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span
+                                    class="hide-menu">Thống kê</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i

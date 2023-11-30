@@ -16,7 +16,7 @@
                             <th></th>
                 </tr>
                 <?php
-                foreach ($listtaikhoan as $taikhoan) {
+                foreach ($result_taikhoan as $taikhoan) {
                    extract($taikhoan);
                    
                     $xoatk="index.php?act=xoatk&id_tk=".$id_tk;
@@ -49,7 +49,57 @@
             </table>
 
 
+            <?php
 
+?>
+
+<div class="phantrang">
+    <?php
+    $limit = 4;
+    $all_row = alll_row_taikhoan();
+    foreach($all_row as $row_page):
+        $all_page = ceil($row_page[0] / $limit);
+        for($i = 1; $i < $all_page; $i++): ?>
+            <a href="index.php?act=dskhp&page=<?php echo $i ?>" style="background-color: <?php if($_GET['page'] == $i) {  echo 'red';} ?>">
+                <?php echo $i ?>
+            </a>
+        <?php endfor ?>
+    <?php endforeach ?>
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+</div>
+<style>
+.phantrang {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 20px;
+}
+
+.phantrang a {
+display: inline-block;
+padding: 8px 12px;
+margin: 0 5px;
+border: 1px solid #ccc;
+border-radius: 4px;
+text-decoration: none;
+color: #333;
+background-color: #fff;
+}
+
+.phantrang a.active {
+background-color: red;
+color: #fff;
+}
+</style>
 
         </div>
 
