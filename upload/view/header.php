@@ -207,8 +207,8 @@
                         </div>
                         <!-- tìm kiếm  -->
                         <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
-                            <div class="custom-search-input">
-                                <form action="index.php?act=sanpham" method="post">
+<div class="custom-search-input">
+                                                            <form action="index.php?act=sanpham" method="post">
                                     <input type="text" placeholder="Tìm kiếm hơn 10.000 sản phẩm " name="kyw">
                                     <button type="submit"><i class="header-icon_search_custom"
                                             name="timkiem"></i></button>
@@ -223,7 +223,27 @@
                                         <a href="index.php?act=addcart" class="cart_bt"><strong>2</strong></a>
                                         <div class="dropdown-menu">
                                             <ul>
-                                                <li>
+                                                <?php 
+                                                  $i = 0;
+                                                  $tong=0;
+                                                if(isset($_SESSION['giohang'])&&(count($_SESSION['giohang']))>0){
+                                                    foreach( $_SESSION['giohang']as $arr){
+                                                      $tong += $arr['tt']; 
+                                                   
+                                                    echo '<li>
+                                                    <a href="#">
+                                                        <figure><img
+                                                        src=" '.$arr['hinh'].'" alt=""
+                                                                width="50" height="50" class="lazy"></figure>
+                                                        <strong><span>'.$arr['tensp'].'</span>'.$arr['giasp'].'</strong>
+                                                    </a>
+                                                    <a href="#0" class="action"><i class="ti-trash"></i></a>
+                                                </li>';
+                                                    
+                                                }
+                                                }
+                                                ?>
+                                                <!-- <li>
                                                     <a href="product-detail-1.html">
                                                         <figure><img
                                                                 src="img/products/product_placeholder_square_small.jpg"
@@ -242,10 +262,10 @@
                                                         <strong><span>1x Armor Okwahn II</span>$110.00</strong>
                                                     </a>
                                                     <a href="0" class="action"><i class="ti-trash"></i></a>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                             <div class="total_drop">
-                                                <div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
+                                                <div class="clearfix"><strong>Total</strong><span><?=$tong?></span></div>
                                                 <a href="index.php?act=addcart" class="btn_1 outline">Giỏ hàng</a><a
                                                     href="checkout.html" class="btn_1">Checkout</a>
                                             </div>

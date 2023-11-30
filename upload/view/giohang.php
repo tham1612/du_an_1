@@ -13,8 +13,10 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
+        href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
+        href="img/apple-touch-icon-144x144-precomposed.png">
 
     <!-- GOOGLE WEB FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,9 +34,10 @@
     <link href="css/custom.css" rel="stylesheet">
 
 </head>
+
 <body>
-<div id="pape">
-<main class="bg_gray">
+    <div id="pape">
+        <main class="bg_gray">
             <div class="container margin_30">
                 <div class="page_header">
                     <div class="breadcrumbs">
@@ -46,7 +49,7 @@
                     </div>
                     <h1>Cart page</h1>
                 </div>
-               
+
                 <!-- /page_header -->
                 <table class="table table-striped cart-list">
                     <thead>
@@ -69,40 +72,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                        if(isset($_SESSION['giohang'])&&(count($_SESSION['giohang']))>0){
-                           foreach($_SESSION['giohang'] as $item){
-                            extract($item);
-                            $tt=$item[3]*$item[4];
-                            $linksp = "index.php?act=sanphamct&idsp=";
-                            echo'<tr>
+                        <?php
+                        $i = 0;
+                        if(isset($_SESSION['giohang']) && (count($_SESSION['giohang'])) > 0) {
+                            $tong = 0;
+                            foreach( $_SESSION['giohang']as $arr) {
+                               
+                               
+                                $tong += $arr['tt'];
+                                $linksp = "index.php?act=sanphamct&idsp=";
+                                echo '<tr>
                             <td>
                                 <div class="thumb_cart">
-                                <a href="' . $linksp . '"><img src=" '.$item[2].'" class="lazy" alt="Image"></a>
+                                <a href="'.$linksp.'"><img src=" '.  $arr['hinh'].'" class="lazy" alt="Image"></a>
                                 </div>
-                                <span class="item_cart">'.$item[1].'</span>
+                                <span class="item_cart">'.$arr['tensp'].'</span>
                             </td>
                             <td>
-                                <strong>'.($item['3']).'</strong>
+                                <strong>'.$arr['giasp'].'</strong>
                             </td>
                             <td>
                           
                             
                                 <div class="numbers-row">
-                                    <input type="text" value="'.$item[4].'" id="quantity_1" class="qty2" name="sl">
+                                    <input type="text" value="'.$arr['sl'].'" id="quantity_1" class="qty2" name="sl">
                                   
                                 </div>
                                
                                
                             </td>
                             <td>
-                                <strong>'.($tt).'</strong>
+                                <strong>'.$arr['tt'].'</strong>
                             </td>
                             <td class="options">
-                                <a href="#"><i class="ti-trash"></i></a>
+                                <a href="index.php?act=decart&i='.$i.'"><i class="ti-trash" name="xoaspcart"></i></a>
                             </td>
+                            
                         </tr>';
-                           }
+                                $i++;
+                            }
                         }
                         ?>
                         <!-- <tr>
@@ -183,17 +191,21 @@
 
                 <div class="row add_top_30 flex-sm-row-reverse cart_actions">
                     <div class="col-sm-4 text-end">
-                    <a href="index.php"><button type="button" class="btn_1 gray" name="xoagiohang">Tiếp tục mua hàng</button></a>
+                        <a href="index.php"><button type="button" class="btn_1 gray" name="xoagiohang">Tiếp tục mua
+                                hàng</button></a>
                         <button type="button" class="btn_1 gray">Update Cart</button>
-                        <a href="index.php?act=delcart"><button type="button" class="btn_1 gray" name="xoagiohang">Xoa gio hang</button></a>
+                        <a href="index.php?act=delcart"><button type="submit" class="btn_1 gray" name="xoagiohang">Xoa
+                                gio hang</button></a>
                     </div>
-                    
+
                     <div class="col-sm-8">
                         <div class="apply-coupon">
                             <div class="form-group">
                                 <div class="row g-2">
-                                    <div class="col-md-6"><input type="text" name="coupon-code" value="" placeholder="Promo code" class="form-control"></div>
-                                    <div class="col-md-4"><button type="button" class="btn_1 outline">Apply Coupon</button></div>
+                                    <div class="col-md-6"><input type="text" name="coupon-code" value=""
+                                            placeholder="Promo code" class="form-control"></div>
+                                    <div class="col-md-4"><button type="button" class="btn_1 outline">Apply
+                                            Coupon</button></div>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +221,18 @@
                     <div class="row justify-content-end">
                         <div class="col-xl-4 col-lg-4 col-md-6">
                             <ul>
-                                <li>
+                                <?php
+                                echo ' <li>
+                                <span>Subtotal</span> '.$tong.'
+                            </li>
+                            <li>
+                                <span>Shipping</span> $7.00
+                            </li>
+                            <li>
+                                <span>Total</span> $247.00
+                            </li>';
+                                ?>
+                                <!-- <li>
                                     <span>Subtotal</span> $240.00
                                 </li>
                                 <li>
@@ -217,7 +240,7 @@
                                 </li>
                                 <li>
                                     <span>Total</span> $247.00
-                                </li>
+                                </li> -->
                             </ul>
                             <a href="cart-2.html" class="btn_1 full-width cart">Proceed to Checkout</a>
                         </div>
@@ -227,5 +250,5 @@
             <!-- /box_cart -->
 
         </main>
-</div>
+    </div>
 </body>

@@ -43,19 +43,13 @@
 
     <div class="container margin_30">
         <?php
-        extract($onesp);
-        $img = $img_path . $img;
+            extract($onesp);
+            $hinh = $img_path.$img;
         ?>
-        <div class="countdown_inner">-20% This offer ends in
-            <div data-countdown="2019/05/15" class="countdown"></div>
-        </div>
+
         <div class="row">
             <div class="col-md-6">
-                <!--  <img src="img/products/shoes/3.jpg" alt=""> -->
-            <?php
-                $img = $img_path . $img;
-                echo '<img src="' . $img . '" alt="">'
-            ?>
+                <img src="<?= $hinh ?>" alt="">
             </div>
             <div class="col-md-6">
                 <div class="breadcrumbs">
@@ -66,14 +60,11 @@
                     </ul>
                 </div>
                 <!-- /page_header -->
-                <div class="prod_info">
-                 <!--    <form action="index.php?act=addcart" method="post" enctype=""> -->
-                        <h1>
-                            <?php echo $name ?>
-                        </h1>
+                <form action="index.php?act=addcart" method="POST">
+                    <div class="prod_info">
+                        <h1><?= $name ?></h1>
                         <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                class="icon-star"></i><em>4
+                                class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4
                                 đánh giá</em></span>
 
                         <div class="prod_options">
@@ -85,54 +76,37 @@
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="custom-select-form">
                                         <select class="wide">
-                                            <option value="" selected>Small (S)</option>
-                                            <option value="">M</option>
-                                            <option value=" ">L</option>
-                                            <option value=" ">XL</option>
+                                            <option value="100ml" selected>100ml</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số Lượng </strong></label>
+                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong> Số Lượng </strong></label>
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="numbers-row">
-                                        <input type="text" value="1" id="quantity_1" class="qty2" name="sl">
+                                        <input type="number" value="1" min="1" class="qty2" name="sl">
+                                        <input type="hidden" name="id_pr" value="<?= $id_pr ?>">
+                                        <input type="hidden" name="hinh" value="<?= $hinh ?>">
+                                        <input type="hidden" name="giasp" value="<?= $price ?>">
+                                        <input type="hidden" name="tensp" value="<?= $name ?>">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-5 col-md-6">
-                                <div class="price_main"><span class="new_price">$148.00</span><span
-                                        class="percentage">-20%</span> <span class="old_price">
-                                        <?php echo $price ?>
-                                    </span></div>
+                                <div class="price_main">
+                                    <span class="new_price"><?= $price ?></span>
+                                </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <a href="#" class="btn_1"><input class="btn_add_to_cart"
-                                        type="submit" name="">Add to Cart</a>
+                                <button type="submit" name="addtocart" class="btn_add_to_cart">Add to Cart</button>
                             </div>
                         </div>
-                        <input type="hidden" name="id_pr">
-                        <input type="hidden" name="hinh">
-                        <input type="hidden" name="giasp">
-                        <input type="hidden" name="tensp">
-                        <input type="hidden" name="sl">
-                    </form>
-                </div>
-                <!-- /prod_info -->
-                <div class="product_actions">
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ti-control-shuffle"></i><span>Add to Compare</span></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /product_actions -->
+                    </div>
+                </form>
             </div>
         </div>
         <!-- /row -->
@@ -155,7 +129,6 @@
     <div class="tab_content_wrapper">
         <div class="container">
             <div class="tab-content" role="tablist">
-
                 <div id="pane-A" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-A">
                     <div class="card-header" role="tab" id="heading-A">
                         <h5 class="mb-0">
@@ -169,12 +142,20 @@
                         <div class="card-body">
                             <div class="row justify-content-between">
                                 <div class="col-lg-6">
-                                    <h3>Mo Ta</h3>
-
-                                    <p>
-                                        <?php echo $mota ?>
-                                        
-                                    </p>
+                                    <h3><?php echo $name ?></h3>
+                                    <?= $mota ?>
+                                    <!-- <p>Lorem ipsum dolor sit amet, in eleifend <strong>inimicus elaboraret</strong> his,
+                                        harum efficiendi mel ne. Sale percipit vituperata ex mel, sea ne essent aeterno
+                                        sanctus, nam ea laoreet civibus electram. Ea
+                                        vis eius explicari. Quot iuvaret ad has.</p>
+                                    <p>Vis ei ipsum conclusionemque. Te enim suscipit recusabo mea, ne vis mazim
+                                        aliquando, everti insolens at sit. Cu vel modo unum quaestio, in vide dicta has.
+                                        Ut his laudem explicari adversarium, nisl <strong>laboramus hendrerit</strong>
+                                        te his, alia lobortis vis ea.</p>
+                                    <p>Perfecto eleifend sea no, cu audire voluptatibus eam. An alii praesent sit, nobis
+                                        numquam principes ea eos, cu autem constituto suscipiantur eam. Ex graeci
+                                        elaboraret pro. Mei te omnis tantas, nobis viderer
+                                        vivendo ex has.</p> -->
                                 </div>
                                 <div class="col-lg-5">
                                     <h3>Specifications</h3>
@@ -212,61 +193,103 @@
                         <h5 class="mb-0">
                             <a class="collapsed" data-bs-toggle="collapse" href="#collapse-B" aria-expanded="false"
                                 aria-controls="collapse-B">
-                                đánh giá
+                                Reviews
                             </a>
                         </h5>
                     </div>
                     <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
                         <div class="card-body">
-                        <div class="row justify-content-between">
-                    <div class="col-lg-6">
-                        <?php
-                        foreach ($dsbl as $bl){
-                            extract($bl);
-                            echo '<div class="review_content">
+                        <div class="card-body">
+                            <div class="row justify-content-between">
+                                <div class="col-lg-6">
+                                    <?php
+                                    foreach($dsbl as $bl) {
+                                        extract($bl);
+                                        echo '<div class="review_content">
                             <div class="clearfix add_bottom_10">
                                 <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
                                         class="icon-star"></i><i class="icon-star"></i><i
                                         class="icon-star"></i><em>5.0/5.0</em></span>
-                                <em> ' . $ngaybinhluan . '</em>
+                                <em> '.$ngaybinhluan.'</em>
                                 </div>
-                                <h4>   ' . $user . '</h4>
-                                <p>   ' . $noidung . '</p>
+                                <h4>   '.$user.'</h4>
+                                <p>   '.$noidung.'</p>
                             </div>';
-                        } ?>
-                    </div>
+                                    } ?>
+                                </div>
 
-                </div>
-                    <!-- /row -->
-                    <?php if (isset($_SESSION['user'])) {
-                        ?>
-                        <form action="index.php?act=sanphamct&idsp =<?= $idpro ?>" method="post">
-                            
-                            <input type="text" placeholder="nhap noi dung binh luan " name="noidung">
-                            <input type="submit" name="guibinhluan" value="Gửi ">
+                            </div>
+                            <!-- /row -->
+                            <?php if(isset($_SESSION['user'])) {
+                                ?>
+                                <form action="index.php?act=sanphamct&idsp =<?= $idpro ?>" method="post">
 
-                        </form>
-                    <?php } else { ?>
+                                    <input type="text" placeholder="nhap noi dung binh luan " name="noidung">
+                                    <input type="submit" name="guibinhluan" value="Gửi ">
 
-                        <?php
-                        echo "<script>alert('vui lòng đăng nhập để binh luan')</script>";
-                        ?>
+                                </form>
+                            <?php } else { ?>
 
-                    <?php } ?>
-                           
-                       
+                                <?php
+                                echo "<script>alert('vui lòng đăng nhập để binh luan')</script>";
+                                ?>
 
+                            <?php } ?>
+
+
+
+                        </div>
+                            <!-- /row -->
+                           <!--  <div class="row justify-content-between">
+                                <div class="col-lg-6">
+                                    <div class="review_content">
+                                        <div class="clearfix add_bottom_10">
+                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                    class="icon-star"></i><i class="icon-star"></i><i
+                                                    class="icon-star empty"></i><em>4.5/5.0</em></span>
+                                            <em>Published 3 days ago</em>
+                                        </div>
+                                        <h4>"Outstanding"</h4>
+                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea.
+                                            Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere
+                                            fabulas has ut. Rebum laudem cum ea, ius essent fuisset
+                                            ut. Viderer petentium cu his.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="review_content">
+                                        <div class="clearfix add_bottom_10">
+                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                    class="icon-star"></i><i class="icon-star"></i><i
+                                                    class="icon-star"></i><em>5.0/5.0</em></span>
+                                            <em>Published 4 days ago</em>
+                                        </div>
+                                        <h4>"Excellent"</h4>
+                                        <p>Sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius
+                                            essent fuisset ut. Viderer petentium cu his.</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- /row -->
+                            <p class="text-end"><a href="leave-review.html" class="btn_1">Leave a review</a></p>
                         </div>
                         <!-- /card-body -->
                     </div>
                 </div>
                 <!-- /tab B -->
             </div>
-         
             <!-- /tab-content -->
         </div>
         <!-- /container -->
     </div>
+    <!-- /tab_content_wrapper -->
+
+
+   
+
+
+   >
+   
     <!-- /tab_content_wrapper -->
 
     <div class="container margin_60_35">
@@ -277,26 +300,26 @@
         </div>
         <div class="owl-carousel owl-theme products_carousel">
             <?php
-            foreach ($sp_cung_loai as $a) {
+            foreach($sp_cung_loai as $a) {
                 extract($a);
-                $linksp = "index.php?act=sanphamct&idsp=" . $id_pr;
-                $hinh = $img_path . $img;
+                $linksp = "index.php?act=sanphamct&idsp=".$id_pr;
+                $hinh = $img_path.$img;
                 echo '  <form action="index.php?act=addcart" method="post">  
                 <div class="item">
                                     <div class="grid_item">
                                         <span class="ribbon new">New</span>
                                         <figure>
-                                            <a href="' . $linksp . '">
-                                            <img class="owl-lazy" data-src="' . $hinh . '" >
+                                            <a href="'.$linksp.'">
+                                            <img class="owl-lazy" data-src="'.$hinh.'" >
                                             </a>
                                         </figure>
                                         <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
                                                 class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                                        <a href="' . $linksp . '">
-                                            <h3>' . $name . '</h3>
+                                        <a href="'.$linksp.'">
+                                            <h3>'.$name.'</h3>
                                         </a>
                                         <div class="price_box">
-                                            <span class="new_price">' . $price . '</span>
+                                            <span class="new_price">'.$price.'</span>
                                         </div>
                                         <ul>
                                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
@@ -308,10 +331,10 @@
                                         </ul>
                                     </div>
                                     <!-- /grid_item -->
-                                    <input type="hidden" name="id_pr" value="' . $id_pr . '">
-                                        <input type="hidden" name="hinh" value="' . $hinh . '">
-                                        <input type="hidden" name="giasp" value="' . $price . '">
-                                        <input type="hidden" name="tensp" value="' . $name . '">
+                                    <input type="hidden" name="id_pr" value="'.$id_pr.'">
+                                        <input type="hidden" name="hinh" value="'.$hinh.'">
+                                        <input type="hidden" name="giasp" value="'.$price.'">
+                                        <input type="hidden" name="tensp" value="'.$name.'">
                                     </form>
                           </div>';
             }

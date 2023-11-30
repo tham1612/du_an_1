@@ -230,34 +230,41 @@
                         extract($sp);
                         $linksp = "index.php?act=sanphamct&idsp=" . $id_pr;
                         $hinh = $img_path . $img;
-                        echo '  <div class="item">
-                        <div class="grid_item">
-                            <span class="ribbon new">New</span>
-                            <figure>
-                                <a href="' . $linksp . '">
-                                <img class="owl-lazy" data-src="' . $hinh . '" >
-                                </a>
-                            </figure>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                            <a href="' . $linksp . '">
-                                <h3>' . $name . '</h3>
-                            </a>
-                            <div class="price_box">
-                                <span class="new_price">' . $price . '</span>
-                            </div>
-                            <ul>
-                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                        title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                        title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
-                                </li>
-                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                        title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                            </ul>
-                        </div>
-                        <!-- /grid_item -->
-              </div>';
+                        echo ' 
+                        <form action="index.php?act=addcart" method="post">  
+                        <form action="index.php?act=addcart" method="post">  
+                        <div class="item">
+                                            <div class="grid_item">
+                                                <span class="ribbon new">New</span>
+                                                <figure>
+                                                    <a href="'.$linksp.'">
+                                                    <img class="owl-lazy" data-src="'.$hinh.'" >
+                                                    </a>
+                                                </figure>
+                                                <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
+                                                        class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+                                                <a href="'.$linksp.'">
+                                                    <h3>'.$name.'</h3>
+                                                </a>
+                                                <div class="price_box">
+                                                    <span class="new_price">'.$price.'</span>
+                                                </div>
+                                                <ul>
+                                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                                                            title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                                                            title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
+                                                    </li>
+                                                    <li><a href="index.php?act=addcart" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart" ><i><input class="ti-shopping-cart" name="addtocart" type="submit" ></i><span>Add to cart</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- /grid_item -->
+                                            <input type="hidden" name="id_pr" value="'.$id_pr.'">
+                                                <input type="hidden" name="hinh" value="'.$hinh.'">
+                                                <input type="hidden" name="giasp" value="'.$price.'">
+                                                <input type="hidden" name="tensp" value="'.$name.'">
+                                            </form>
+                                  </div>';
                     }
                     ?>
 
