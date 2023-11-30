@@ -87,11 +87,11 @@
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="numbers-row">
                                         <input type="number" value="1" min="1" class="qty2" name="sl">
-                                        <input type="hidden" name="id_pr" value="<?= $id_pr ?>">
-                                        <input type="hidden" name="hinh" value="<?= $hinh ?>">
-                                        <input type="hidden" name="giasp" value="<?= $price ?>">
-                                        <input type="hidden" name="tensp" value="<?= $name ?>">
                                     </div>
+                                    <input type="hidden" name="id_pr" value="<?= $id_pr ?>">
+                                    <input type="hidden" name="hinh" value="<?= $hinh ?>">
+                                    <input type="hidden" name="giasp" value="<?= $price ?>">
+                                    <input type="hidden" name="tensp" value="<?= $name ?>">
                                 </div>
                             </div>
                         </div>
@@ -144,18 +144,7 @@
                                 <div class="col-lg-6">
                                     <h3><?php echo $name ?></h3>
                                     <?= $mota ?>
-                                    <!-- <p>Lorem ipsum dolor sit amet, in eleifend <strong>inimicus elaboraret</strong> his,
-                                        harum efficiendi mel ne. Sale percipit vituperata ex mel, sea ne essent aeterno
-                                        sanctus, nam ea laoreet civibus electram. Ea
-                                        vis eius explicari. Quot iuvaret ad has.</p>
-                                    <p>Vis ei ipsum conclusionemque. Te enim suscipit recusabo mea, ne vis mazim
-                                        aliquando, everti insolens at sit. Cu vel modo unum quaestio, in vide dicta has.
-                                        Ut his laudem explicari adversarium, nisl <strong>laboramus hendrerit</strong>
-                                        te his, alia lobortis vis ea.</p>
-                                    <p>Perfecto eleifend sea no, cu audire voluptatibus eam. An alii praesent sit, nobis
-                                        numquam principes ea eos, cu autem constituto suscipiantur eam. Ex graeci
-                                        elaboraret pro. Mei te omnis tantas, nobis viderer
-                                        vivendo ex has.</p> -->
+                                    
                                 </div>
                                 <div class="col-lg-5">
                                     <h3>Specifications</h3>
@@ -220,7 +209,7 @@
 
                             </div>
                             <!-- /row -->
-                            <?php if(isset($_SESSION['user'])) {
+                            <?php /* if(isset($_SESSION['user'])) { */
                                 ?>
                                 <form action="index.php?act=sanphamct&idsp =<?= $idpro ?>" method="post">
 
@@ -228,49 +217,18 @@
                                     <input type="submit" name="guibinhluan" value="Gửi ">
 
                                 </form>
-                            <?php } else { ?>
+                            <?php /*  } else { */ ?>
 
                                 <?php
-                                echo "<script>alert('vui lòng đăng nhập để binh luan')</script>";
+                              /*   echo "<script>alert('vui lòng đăng nhập để binh luan')</script>"; */
                                 ?>
 
-                            <?php } ?>
+                            <?php /* }  */?>
 
 
 
                         </div>
-                            <!-- /row -->
-                           <!--  <div class="row justify-content-between">
-                                <div class="col-lg-6">
-                                    <div class="review_content">
-                                        <div class="clearfix add_bottom_10">
-                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star empty"></i><em>4.5/5.0</em></span>
-                                            <em>Published 3 days ago</em>
-                                        </div>
-                                        <h4>"Outstanding"</h4>
-                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea.
-                                            Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere
-                                            fabulas has ut. Rebum laudem cum ea, ius essent fuisset
-                                            ut. Viderer petentium cu his.</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="review_content">
-                                        <div class="clearfix add_bottom_10">
-                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><i class="icon-star"></i><i
-                                                    class="icon-star"></i><em>5.0/5.0</em></span>
-                                            <em>Published 4 days ago</em>
-                                        </div>
-                                        <h4>"Excellent"</h4>
-                                        <p>Sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius
-                                            essent fuisset ut. Viderer petentium cu his.</p>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- /row -->
+                           
                             <p class="text-end"><a href="leave-review.html" class="btn_1">Leave a review</a></p>
                         </div>
                         <!-- /card-body -->
@@ -327,8 +285,7 @@
                                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                                     title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
                                             </li>
-                                            <li><a href="index.php?act=addcart" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart" ><i><input class="ti-shopping-cart" name="addtocart" type="submit" ></i><span>Add to cart</span></a></li>
-                                        </ul>
+                                           
                                     </div>
                                     <!-- /grid_item -->
                                     <input type="hidden" name="id_pr" value="'.$id_pr.'">

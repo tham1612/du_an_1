@@ -168,28 +168,32 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'thoat':
             //code//
-            session_unset();
             if(isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
             }
-            echo "<script>window.location.href='index.php';</script>";
+            header('Location: /view/index.php');
+            exit();
+            // echo "<script>window.location.href='index.php';</script>";
         case 'addcart':
             
-
+            // session_destroy();
+            // die;
             if(isset($_SESSION['user'])) {
                 if(isset($_POST['addtocart'])) {
 
+                    $userID = $_SESSION['user']['id_tk'];
                     $id_pr = $_POST['id_pr'];
                     $tensp = $_POST['tensp'];
                     $img = $_POST['hinh'];
                     $gia = $_POST['giasp'];
-                    $sl = $_POST['sl'] ?:1;
-
-                    if (isset($_SESSION['giohang'][$id_pr])) {
-                        $_SESSION['giohang'][$id_pr]['sl'] = intval($_POST['sl']) + intval($_SESSION['giohang'][$id_pr]['sl']);
-                        $_SESSION['giohang'][$id_pr]['tt'] = $_SESSION['giohang'][$id_pr]['sl'] * $_SESSION['giohang'][$id_pr]['giasp'];
+                    $sl = isset($_POST['sl']) ? $_POST['sl']  : 1;
+                    
+                    $key = "giohang-$userID";
+                    if(isset($_SESSION[$key][$id_pr])) {
+                        $_SESSION[$key][$id_pr]['sl'] = intval($sl) + intval($_SESSION[$key][$id_pr]['sl']);
+                        $_SESSION[$key][$id_pr]['tt'] = $_SESSION[$key][$id_pr]['sl'] * $_SESSION[$key][$id_pr]['giasp'];
                     } else {
-                        $_SESSION['giohang'][$id_pr] = [
+                        $_SESSION[$key][$id_pr] = [
                             'id_pr' => $_POST['id_pr'],
                             'tensp' => $_POST['tensp'],
                             'hinh' => $_POST['hinh'],
@@ -199,8 +203,8 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                         ];
                     }
 
-                 /*    echo "<pre>";
-                    print_r($_SESSION['giohang']);die;  */
+                    //     echo "<pre>";
+                    //    print_r($_SESSION);die;
                 }
 
 
@@ -212,20 +216,27 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
             break;
         case 'decart':
-            /*  if(isset($_GET['i']) && $_GET['i']>0){
-                 array_splice($_SESSION['giohang'],$_GET[['i']],1);
 
-             }
-             if (isset($_POST['xoagiohang']))
-              unset($_SESSION['giohang']);
-              if(isset($_SESSION['giohang']) && $_GET['i']>0){
-                 header('locatinon:index.php?act=addcart');
-              }else{
-              header('locatinon:index.php');
-              }
-             
+            if(isset($_GET['i']) && $_GET['i'] >= 0) {
+                array_splice($_SESSION['giohang'], $_GET['i'], 1);
 
-             */
+            }
+            if(isset($_GET['xoagiohang'])){
+                
+                unset($_SESSION['giohang']);
+            }
+            if(isset($_SESSION['giohang']) && $_GET['i'] >= 0) {
+                //header('locatinon:index.php?act=addcart');
+                echo "<script>window.location.href='index.php?act=addcart';</script>";
+
+            } else {
+                echo "<script>window.location.href='index.php';</script>";
+                //header('locatinon:index.php');
+            }
+
+            
+
+
 
             break;
 

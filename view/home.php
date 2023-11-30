@@ -177,8 +177,7 @@
                                                 <ul>
                                                     <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
                                                     <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                                    <li><a href="index.php?act=addcart" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart" ><i><input class="ti-shopping-cart" name="addtocart" type="submit" ></i><span>Add to cart</span></a></li>
-                                                </ul>
+                                                  
                                 
                                             </div>
                                         </div>
@@ -232,7 +231,7 @@
                         $hinh = $img_path . $img;
                         echo ' 
                         <form action="index.php?act=addcart" method="post">  
-                        <form action="index.php?act=addcart" method="post">  
+                     
                         <div class="item">
                                             <div class="grid_item">
                                                 <span class="ribbon new">New</span>
@@ -255,7 +254,7 @@
                                                     <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                                             title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
                                                     </li>
-                                                    <li><a href="index.php?act=addcart" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart" ><i><input class="ti-shopping-cart" name="addtocart" type="submit" ></i><span>Add to cart</span></a></li>
+                                                 
                                                 </ul>
                                             </div>
                                             <!-- /grid_item -->
