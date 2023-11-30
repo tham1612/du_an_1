@@ -2,7 +2,7 @@
 
 session_start();
 ob_start();
-if (!isset($_SESSION['giohang']))
+if(!isset($_SESSION['giohang']))
     $_SESSION['giohang'] = [];
 include "../model/pdo.php";
 include "../model/sanpham.php";
@@ -10,7 +10,7 @@ include "../model/danhmuc.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
 $dsdm = loadall_danhmuc();
-if (isset($_GET['iddm']) && ($_GET['iddm'])) {
+if(isset($_GET['iddm']) && ($_GET['iddm'])) {
     $iddm = $_GET['iddm'];
 } else {
     $iddm = 0;
@@ -21,17 +21,17 @@ include "global.php";
 $spnew = loadall_sanpham_home();
 $dstop10 = loadall_sanpham_home_top10();
 
-if (isset($_GET['act']) && ($_GET['act'] != "")) {
+if(isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
-    switch ($act) {
+    switch($act) {
         case 'sanpham':
 
-            if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
+            if(isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
                 $kyw = $_POST['kyw'];
             } else {
                 $kyw = "";
             }
-            if (isset($_GET['iddm']) && ($_GET['iddm']) > 0) {
+            if(isset($_GET['iddm']) && ($_GET['iddm']) > 0) {
                 $iddm = $_GET['iddm'];
             } else {
                 $iddm = 0;
@@ -43,29 +43,29 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "sp.php";
             break;
         case 'sanphamct':
-            if (isset($_POST['guibinhluan'])) {
-                
-                insert_binhluan($_POST['noidung'],$_POST['idpro']);
-            
-                }
-            
-          /*   if (isset($_POST['guibinhluan']) && ($_POST['guibinhluan'])) {
-                $noidung = $_POST['noidung'];
-                $idpro = $_POST['idpro'];
-                $iduser = $_SESSION['user']['id_tk'];
-                $ngaybinhluan = date('h:i:sa d/m/Y');
-                insert_binhluan($noidung, $iduser, $idpro, $ngaybinhluan);
-                $dsbl = loadall_binhluan($idpro);
-            } */
-            if (isset($_GET['idsp']) && ($_GET['idsp'])) {
+            if(isset($_POST['guibinhluan'])) {
+
+                insert_binhluan($_POST['noidung'], $_POST['idpro']);
+            }
+
+            /*   if (isset($_POST['guibinhluan']) && ($_POST['guibinhluan'])) {
+                  $noidung = $_POST['noidung'];
+                  $idpro = $_POST['idpro'];
+                  $iduser = $_SESSION['user']['id_tk'];
+                  $ngaybinhluan = date('h:i:sa d/m/Y');
+                  insert_binhluan($noidung, $iduser, $idpro, $ngaybinhluan);
+                  $dsbl = loadall_binhluan($idpro);
+              } */
+            if(isset($_GET['idsp']) && ($_GET['idsp'])) {
                 $id = $_GET['idsp'];
                 $onesp = loadone_sanpham($id);
                 extract($onesp);
                 $sp_cung_loai = load_sanpham_cungloai($id_pr, $iddm);
-                $dsbl= loadall_binhluan ($_GET['idsp']);
+                $dsbl = loadall_binhluan($_GET['idsp']);
+
                 include "sanphamct.php";
             } else {
-                include "view/home.php";
+                include "home.php";
             }
 
             break;
@@ -75,7 +75,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $sosanpham1 = sosanphamcuatungdanhmuc();
             include "locsp.php";
         case 'dangky':
-            if (isset($_POST['dangky']) && ($_POST['dangky'])) {
+            if(isset($_POST['dangky']) && ($_POST['dangky'])) {
                 $email = $_POST['email'];
                 $pass = $_POST['pass'];
                 $user = $_POST['user'];
@@ -93,16 +93,15 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
               
                 thongbao.intro();
             </script>';
-
             }
             include "taikhoan/dangki-dangnhap.php";
             break;
         case "dangnhap":
-            if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
+            if(isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
                 $user = $_POST['user'];
                 $pass = $_POST['pass'];
                 $checkuser = checkuser($user, $pass);
-                if (is_array($checkuser)) {
+                if(is_array($checkuser)) {
                     $_SESSION['user'] = $checkuser;
                     echo '<script>alert("Chúc mừng đăng nhập thành công");</script>';
                     // header('Location:index.php?act=home');
@@ -116,7 +115,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             break;
         case "edit_taikhoan":
-            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+            if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
                 $pass = $_POST['pass'];
                 $user = $_POST['user'];
                 $email = $_POST['email'];
@@ -131,18 +130,18 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'quenmk':
 
-            if (isset($_POST['guimail']) && ($_POST['guimail'])) {
+            if(isset($_POST['guimail']) && ($_POST['guimail'])) {
                 $email = $_POST['email'];
                 $checkemail = checkemail($email);
-                if (is_array($checkemail)) {
+                if(is_array($checkemail)) {
                     $thongbao = '<script>
                             var thongbao = new Object();
                             thongbao.name = "mật khẩu của bạn là:";
-                            thongbao.name2="' . $checkemail['pass'] . '";
+                            thongbao.name2="'.$checkemail['pass'].'";
                         
                         
                             thongbao.intro = function() {
-                                alert( "mật khẩu của bạn là:' . $checkemail['pass'] . '");
+                                alert( "mật khẩu của bạn là:'.$checkemail['pass'].'");
                     
                     
                             }
@@ -169,44 +168,46 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'thoat':
             //code//
-            session_unset();
-            if (isset($_SESSION['user'])) {
+            if(isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
             }
-            echo "<script>window.location.href='index.php';</script>";
+            header('Location: /view/index.php');
+            exit();
+            // echo "<script>window.location.href='index.php';</script>";
         case 'addcart':
-            if (isset($_SESSION['user'])) {
-                if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
+            
+            // session_destroy();
+            // die;
+            if(isset($_SESSION['user'])) {
+                if(isset($_POST['addtocart'])) {
+
+                    $userID = $_SESSION['user']['id_tk'];
                     $id_pr = $_POST['id_pr'];
                     $tensp = $_POST['tensp'];
                     $img = $_POST['hinh'];
                     $gia = $_POST['giasp'];
-                    if (isset($_POST['sl']) && ($_POST['sl']) > 0) {
-                        $sl = $_POST['sl'];
+                    $sl = isset($_POST['sl']) ? $_POST['sl']  : 1;
+                    
+                    $key = "giohang-$userID";
+                    if(isset($_SESSION[$key][$id_pr])) {
+                        $_SESSION[$key][$id_pr]['sl'] = intval($sl) + intval($_SESSION[$key][$id_pr]['sl']);
+                        $_SESSION[$key][$id_pr]['tt'] = $_SESSION[$key][$id_pr]['sl'] * $_SESSION[$key][$id_pr]['giasp'];
                     } else {
-                        $sl = 1;
+                        $_SESSION[$key][$id_pr] = [
+                            'id_pr' => $_POST['id_pr'],
+                            'tensp' => $_POST['tensp'],
+                            'hinh' => $_POST['hinh'],
+                            'giasp' => intval($_POST['giasp']),
+                            'sl' => $sl,
+                            'tt' => intval($_POST['sl']) * intval($_POST['giasp'])
+                        ];
                     }
 
-                    $fg = 0;
-                    $i = 0;
-                    foreach ($_SESSION['giohang'] as $item) {
-                        if ($item[1] === $tensp) {
-                            $slnew = $sl + $item[4];
-                            $_SESSION['giohang'][$i][4] = $slnew;
-                            $fg = 1;
-                          
-                            break;
-                        }
-                        $i++;
-                    }
-                    if ($fg == 0) {
-
-                        $item = array($id_pr, $tensp, $img, $gia, $sl);
-                        $_SESSION['giohang'][] = $item;
-                       
-                    }
-                     $tt=$item[3]*$item[4];
+                    //     echo "<pre>";
+                    //    print_r($_SESSION);die;
                 }
+
+
                 include "giohang.php";
             } else {
                 echo "<script>alert('vui lòng đăng nhập để thêm vào giỏ hàng')</script>";
@@ -215,20 +216,36 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             break;
         case 'decart':
-            if (isset($_POST['xoagiohang']) && ($_POST['xoagiohang']))
-                unset($_SESSION['giohang']);
 
-            /* echo "<script>window.location.href='index.php';</script>"; */
-            include "index.php";
+            if(isset($_GET['i']) && $_GET['i'] >= 0) {
+                array_splice($_SESSION['giohang'], $_GET['i'], 1);
+
+            }
+            if(isset($_GET['xoagiohang'])){
+                
+                unset($_SESSION['giohang']);
+            }
+            if(isset($_SESSION['giohang']) && $_GET['i'] >= 0) {
+                //header('locatinon:index.php?act=addcart');
+                echo "<script>window.location.href='index.php?act=addcart';</script>";
+
+            } else {
+                echo "<script>window.location.href='index.php';</script>";
+                //header('locatinon:index.php');
+            }
+
+            
+
+
+
             break;
 
-        /*         default:
-                    //code//
-                    include "view/home.php";
-                    break; */
+        default:
+            //code//
+            include "home.php";
+            break;
     }
 } else {
     include "home.php";
 }
 include "footer.php";
-?>

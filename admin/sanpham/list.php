@@ -16,13 +16,13 @@
                     <th></th>
                 </tr>
                 <?php
-                foreach ($result_sanpham as $sanpham) {
+                foreach($result_sanpham as $sanpham) {
                     extract($sanpham);
-                    $suasp = "index.php?act=suasp&id_pr=" . $id_pr;
-                    $xoasp = "index.php?act=xoasp&id_pr=" . $id_pr;
-                    $hinhpath = "../upload/" . $img;
-                    if (is_file($hinhpath)) {
-                        $hinh = "<img src='" . $hinhpath . "'height=80'>";
+                    $suasp = "index.php?act=suasp&id_pr=".$id_pr;
+                    $xoasp = "index.php?act=xoasp&id_pr=".$id_pr;
+                    $hinhpath = "../upload/".$img;
+                    if(is_file($hinhpath)) {
+                        $hinh = "<img src='".$hinhpath."'height=80'>";
 
                     } else {
                         $hinh = "no photo";
@@ -30,13 +30,13 @@
                     # code...
                     echo '<tr>
                 <td> <input type="checkbox" name="" id=""></td>
-                <td>' . $id_pr . '</td>
-                <td>' . $name . ' </td>
-                <td>' . $hinh . ' </td>
-                <td>' . $price . ' </td>
-                <td>' . $mota . ' </td>
-                <td>' . $luotxem . ' </td>
-                <td><a href="' . $suasp . ' "><input type="button" value="sửa"></a> ,<a href="' . $xoasp . ' " ><input type="button" value="xóa" ></a></td>
+                <td>'.$id_pr.'</td>
+                <td>'.$name.' </td>
+                <td>'.$hinh.' </td>
+                <td>'.$price.' </td>
+                <td>'.$mota.' </td>
+                <td>'.$luotxem.' </td>
+                <td><a href="'.$suasp.' "><input type="button" value="sửa"></a> ,<a href="'.$xoasp.' " ><input type="button" value="xóa" ></a></td>
                  </tr>';
                 }
                 ?>
@@ -61,15 +61,12 @@
 
             <div class="phantrang">
                 <?php
-                $limit = 5;
+                $limit = 4;
                 $all_row = alll_row_sanpham();
-                foreach ($all_row as $row_page):
+                foreach($all_row as $row_page):
                     $all_page = ceil($row_page[0] / $limit);
-                    for ($i = 1; $i < $all_page; $i++): ?>
-                        <a href="index.php?act=listsp&page=<?php echo $i ?>" style="background-color: <?php if ($_GET['page'] == $i) {
-                               echo 'red';
-                           }
-                           ; ?>">
+                    for($i = 1; $i < $all_page; $i++): ?>
+                        <a href="index.php?act=listsp&page=<?php echo $i ?>" style="background-color: <?php if($_GET['page'] == $i) {  echo 'red';} ?>">
                             <?php echo $i ?>
                         </a>
                     <?php endfor ?>
@@ -86,14 +83,15 @@
     </div>
 </div>
 <style>
-    .phantrang>a{
+    .phantrang>a {
         width: 50px;
         height: 20px;
         padding: 5px 15px 5px 5px;
         background-color: black;
         color: white;
     }
-    .phantrang{
+
+    .phantrang {
         margin-left: 400px;
         margin-top: 100px;
     }
