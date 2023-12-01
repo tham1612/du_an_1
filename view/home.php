@@ -141,9 +141,8 @@
 
             <div class="container margin_60_35">
                 <div class="main_title">
-                    <h2>Top Sản Phẩm Hot</h2>
-                    <span>Products</span>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+                    <h2>TOP SẢN PHẨM HOT</h2>
+                    
                 </div>
                 <div class="row small-gutters">
 
@@ -219,9 +218,8 @@
 
             <div class="container margin_60_35">
                 <div class="main_title">
-                    <h2>Top 10 sản Phẩm yêu thích</h2>
-                    <span>Products</span>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+                    <h2>TOP 10 SẢN PHẨM YÊU THÍCH</h2>
+                   
                 </div>
                 <div class="owl-carousel owl-theme products_carousel">
                     <?php
