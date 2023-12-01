@@ -115,6 +115,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                
                 if (empty($_SESSION['err'])) {
                     insert_taikhoan($user,$pass,$email);
+                    $_SESSION['success'] = 'Đăng Kí Thành Công !';
                 }
             }
             include "taikhoan/dangki-dangnhap.php";
@@ -255,8 +256,27 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 include "footer.php";
 ?>
 <style>
-  .error-message {
-    color: red;
-    margin-bottom: 10px;
-  }
+/* CSS cho thông báo thành công */
+.success-message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #d6e9c6;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* CSS cho thông báo lỗi */
+.error-message {
+  background-color: #f2dede;
+  color: #a94442;
+  border: 1px solid #ebccd1;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* CSS cho thông báo */
+.notification {
+  width: 300px;
+  margin: 0 auto;
+}
 </style>

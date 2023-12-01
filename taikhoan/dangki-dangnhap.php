@@ -68,11 +68,11 @@
                                     <div class="divider"><span>Or</span></div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="user" id="user"
-                                            placeholder="Tên đăng nhập*" required>
+                                            placeholder="Tên đăng nhập*">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" name="pass" id="password_in"
-                                            value="" placeholder="Password*" required>
+                                            value="" placeholder="Password*">
                                     </div>
                                     <div class="clearfix add_bottom_15">
                                         <div class="checkboxes float-start">
@@ -88,7 +88,6 @@
                                             class="btn_1 full-width" name="dangnhap"></div>
                                     <?php
                                     if (isset($thongbao) && ($thongbao != ""))
-                                  
                                         echo $thongbao;
                                     ?>
                                     <div id="forgot_pw">
@@ -180,14 +179,3 @@
         </main>
     </div>
 </body>
-<style>
-  .err {
-    color: red;
-    margin-bottom: 10px;
-  }
-
-  .success {
-    color: green;
-    margin-bottom: 10px;
-  }
-</style>

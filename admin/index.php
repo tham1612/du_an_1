@@ -156,7 +156,7 @@ if (isset($_GET['act'])) {
             include "sanpham/list.php";
             break;
         case 'dskh':
-            $limit = 4;
+            $limit = 8;
             if(isset($_GET['page'])){
                 $page = $_GET['page'];
 

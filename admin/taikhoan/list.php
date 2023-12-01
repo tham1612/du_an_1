@@ -55,7 +55,7 @@
 
 <div class="phantrang">
     <?php
-    $limit = 4;
+    $limit = 8;
     $all_row = alll_row_taikhoan();
     foreach($all_row as $row_page):
         $all_page = ceil($row_page[0] / $limit);
