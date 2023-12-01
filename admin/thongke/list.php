@@ -3,6 +3,7 @@
         <h1>THỐNG KÊ SẢN PHẨM TRONG DANH MỤC</h1>
     </div>
      <div class="row2 from_content">
+        <form action="#" method="POST">
         <div class="row2 mb10 formds_loai">
             <table>
                 <tr>
@@ -24,14 +25,19 @@
                     <td><?php echo $soluong ?></td>
                     <td><?php echo $gia_min ?></td>
                     <td><?php echo $gia_max ?></td>
-                    <td><?php echo $gia_avg ?></td>
-                </tr>
+                    <td><?php echo number_format($gia_avg, 2) ?></td>
+                </tr>              
                 <?php
-    }
+                  }
                 ?>
+              </table>
+                </div>
+                <div class="row mb10"> 
+                    <a href="?act=bieudo"> <input class="mr20" type="button" value="Xem biểu đồ"></a>
 
-            </table>
-        </div>
-
-     </div>
+                </div>
+                </form>
 </div>
+   </div>
+           
+     
