@@ -9,6 +9,7 @@ include "../model/sanpham.php";
 include "../model/danhmuc.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
+include "../model/donhang.php";
 $dsdm = loadall_danhmuc();
 if(isset($_GET['iddm']) && ($_GET['iddm'])) {
     $iddm = $_GET['iddm'];
@@ -173,21 +174,19 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             header('Location: /view/index.php');
             exit();
-            // echo "<script>window.location.href='index.php';</script>";
+        // echo "<script>window.location.href='index.php';</script>";
         case 'addcart':
-            
+
             // session_destroy();
             // die;
             if(isset($_SESSION['user'])) {
                 if(isset($_POST['addtocart'])) {
-
                     $userID = $_SESSION['user']['id_tk'];
                     $id_pr = $_POST['id_pr'];
                     $tensp = $_POST['tensp'];
                     $img = $_POST['hinh'];
                     $gia = $_POST['giasp'];
-                    $sl = isset($_POST['sl']) ? $_POST['sl']  : 1;
-                    
+                    $sl = isset($_POST['sl']) ? $_POST['sl'] : 1;
                     $key = "giohang-$userID";
                     if(isset($_SESSION[$key][$id_pr])) {
                         $_SESSION[$key][$id_pr]['sl'] = intval($sl) + intval($_SESSION[$key][$id_pr]['sl']);
@@ -202,7 +201,6 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                             'tt' => intval($_POST['sl']) * intval($_POST['giasp'])
                         ];
                     }
-
                     //     echo "<pre>";
                     //    print_r($_SESSION);die;
                 }
@@ -234,12 +232,41 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 //header('locatinon:index.php');
             }
 
+        case 'thongtin':
+            if(isset($_POST['thanhtoan'])){
+                $userID=$_SESSION['user']['id_tk'];
+                $tong=$_POST['tong'];
+                $name=$_POST['name'];
+                $diachi=$_POST['diachi'];
+                $email=$_POST['email'];
+                $tel=$_POST['tel'];
+                $pttt=$_POST['pttt'];
+                $madh="ABCD".rand(0,9999);
+                $id_dh=taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel) ;
+        foreach (iddh() as $key => $value) {
+            # code...echo
+            echo $value['id_dh'];
+            die;
+        }
+           
             
 
-
-
+                if((isset($_SESSION['user']))){
+                    if(!empty($_SESSION[$key])){
+                       
+                        foreach($_SESSION[$key] as $arr){
+                            $b= implode(', ', $arr);
+                           $a = addtocart($iddh,$arr['id_pr'],$arr['tensp'],$arr['hinh'],$arr['giasp'],$arr['sl']);
+                        }
+                       
+                        
+                    }
+                    unset($_SESSION['giohang']);
+                }
+                
+            }
+            include 'thongtin.php';
             break;
-
         default:
             //code//
             include "home.php";

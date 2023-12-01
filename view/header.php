@@ -220,7 +220,7 @@
                             <ul class="top_tools">
                                 <li>
                                     <div class="dropdown dropdown-cart">
-                                        <a href="index.php?act=addcart" class="cart_bt"><strong>2</strong></a>
+                                        <a href="index.php?act=addcart" class="cart_bt"><strong><?php count($_SESSION['giohang']) ?></strong></a>
                                         <div class="dropdown-menu">
                                             <ul>
                                                 <?php
@@ -252,7 +252,7 @@
                                             </ul>
                                             <div class="total_drop">
                                                 <div class="clearfix"><strong>Total</strong><span><?= $tong ?></span></div>
-                                                <a href="index.php?act=addcart" class="btn_1 outline">Giỏ hàng</a><a href="checkout.html" class="btn_1">Checkout</a>
+                                                <a href="index.php?act=addcart" class="btn_1 outline">Giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -266,7 +266,6 @@
                                         <?php
                                         if (isset($_SESSION['user'])) {
                                             extract($_SESSION['user']);
-
                                         ?>
                                             <span class="access_link">xin chao <?= $user ?></span>
                                             <div class="dropdown-menu">
