@@ -216,12 +216,14 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
         case 'decart':
 
             if(isset($_GET['i']) && $_GET['i'] >= 0) {
-                array_splice($_SESSION['giohang'], $_GET['i'], 1);
+                array_splice($_SESSION[$key], $_GET['i'], 1);
 
             }
             if(isset($_GET['xoagiohang'])){
-                
-                unset($_SESSION['giohang']);
+                $userID = $_SESSION['user']['id_tk'];
+                $key = "giohang-$userID";
+                unset($_SESSION[$key]);
+                // var_dump($_SESSION);
             }
             if(isset($_SESSION['giohang']) && $_GET['i'] >= 0) {
                 //header('locatinon:index.php?act=addcart');
@@ -231,6 +233,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 echo "<script>window.location.href='index.php';</script>";
                 //header('locatinon:index.php');
             }
+
 
         case 'thongtin':
             if(isset($_POST['thanhtoan'])){
@@ -242,28 +245,17 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $tel=$_POST['tel'];
                 $pttt=$_POST['pttt'];
                 $madh="ABCD".rand(0,9999);
-                $id_dh=taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel) ;
-        foreach (iddh() as $key => $value) {
-            # code...echo
-            echo $value['id_dh'];
-            die;
-        }
-           
-            
-
+                $iddh=taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel) ;
                 if((isset($_SESSION['user']))){
                     if(!empty($_SESSION[$key])){
                        
                         foreach($_SESSION[$key] as $arr){
                             $b= implode(', ', $arr);
                            $a = addtocart($iddh,$arr['id_pr'],$arr['tensp'],$arr['hinh'],$arr['giasp'],$arr['sl']);
-                        }
-                       
-                        
+                        }                                               
                     }
-                    unset($_SESSION['giohang']);
-                }
-                
+                    unset($_SESSION[$key]);
+                }                
             }
             include 'thongtin.php';
             break;
