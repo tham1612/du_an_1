@@ -236,6 +236,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
 
         case 'thongtin':
+
             if(isset($_POST['thanhtoan'])) {
                 $userID = $_SESSION['user']['id_tk'];
                 $tong = $_POST['tong'];
@@ -271,37 +272,66 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                         $showtt = showtt($_SESSION['iddh']);
                         if($_POST['pttt'] == "Momo") {
                             header('location:index.php?act=momo');
-                        }elseif($_POST['pttt'] == "atm"){
+                        } elseif($_POST['pttt'] == "atm") {
                             header('location:index.php?act=momo_atm');
-                        }else{
-                           /*  header('location:index.php?act=bill'); */
+                        } else {
+                            echo '<script>alert("mã đơn hàng của quý khách là :'.$madh.'.sử dụng mã này để theo dõi đơn hàng");</script>';
                         }
-                       
+
 
 
 
                     }
                     unset($_SESSION[$key]);
 
+
                 }
+                header('locatinon:index.php');
 
 
             }
             include 'thongtin.php';
 
+
+
             break;
-        case 'bill':
-            $showcart = showcart($_SESSION['iddh']);
-            $showtt = showtt($_SESSION['iddh']);
-            include "bill.php";
-            break;
+        /*       case 'bill':
+                  $showcart = showcart($_SESSION['iddh']);
+                  $showtt = showtt($_SESSION['iddh']);
+                  include "bill.php";
+                  break; */
         case 'momo':
 
             include "xulythanhtoanmomo.php";
             break;
         case 'momo_atm':
-    
+
             include "xulythanhtoanmomo_atm.php";
+            break;
+        case 'trangthai':
+            if(isset($_POST['tt']) && ($_POST['tt'] != "")) {
+                $tt1 = $_POST['tt'];
+                $trangthai0 = loadall_trangthai($tt1);
+                if(isset($trangthai0)) {
+                    foreach($trangthai0 as $trangthai1) {
+                        extract($trangthai1);
+                        if($trangthai == 0) {
+                            echo '<script>alert("đơn hàng của bạn đã đặt thành công và người bán đang chuẩn bị hàng");</script>';
+                        } elseif($trangthai == 1) {
+                            echo '<script>alert("đơn hàng của bạn đang trên đường vận chuyển");</script>';
+                        } elseif($trangthai == 2) {
+                            echo '<script>alert("đơn hàng của bạn được giao thành công , hãy đánh giá và cho shop 5 sao nhá");</script>';
+
+                        } 
+                    }
+                }
+                 if(empty($trangthai0)){
+                    echo '<script>alert("mã đơn hàng của bạn tìm kiếm không tồn tại");</script>';
+                }
+            }
+            /*  $donhang=loadone_cart($tt1);
+          $trangthai=loadall_trangthai($tt1); */
+            include "theodoidonhang.php";
             break;
         default:
             //code//
