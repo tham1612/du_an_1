@@ -219,7 +219,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 array_splice($_SESSION[$key], $_GET['i'], 1);
 
             }
-            if(isset($_GET['xoagiohang'])){
+            if(isset($_GET['xoagiohang'])) {
                 $userID = $_SESSION['user']['id_tk'];
                 $key = "giohang-$userID";
                 unset($_SESSION[$key]);
@@ -236,28 +236,72 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
 
         case 'thongtin':
-            if(isset($_POST['thanhtoan'])){
-                $userID=$_SESSION['user']['id_tk'];
-                $tong=$_POST['tong'];
-                $name=$_POST['name'];
-                $diachi=$_POST['diachi'];
-                $email=$_POST['email'];
-                $tel=$_POST['tel'];
-                $pttt=$_POST['pttt'];
-                $madh="ABCD".rand(0,9999);
-                $iddh=taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel) ;
-                if((isset($_SESSION['user']))){
-                    if(!empty($_SESSION[$key])){
+            if(isset($_POST['thanhtoan'])) {
+                $userID = $_SESSION['user']['id_tk'];
+                $tong = $_POST['tong'];
+                $name = $_POST['name'];
+                $diachi = $_POST['diachi'];
+                $email = $_POST['email'];
+                $tel = $_POST['tel'];
+                $pttt = $_POST['pttt'];
+                $madh = "ABCD".rand(0, 9999);
+                $_SESSION['tong'] = $tong;
+                $_SESSION['madh'] = $madh;
+                $iddh = taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel);
+                $_SESSION['iddh'] = $iddh;
+                /* $_SESSION[ $userID][$iddh] = [
+                   
+                    'tong' => $_POST['tong'],
+                    'name' => $_POST['name'],
+                    'diachi' => $_POST['diachi'],
+                    'email' => $_POST['email'],
+                    'tel' => $_POST['tel'],
+                    'pttt' => $_POST['pttt'],
+                    'madh' =>$madh
+                ]; */
+                if((isset($_SESSION['user']))) {
+                    if(!empty($_SESSION[$key])) {
+
+                        foreach($_SESSION[$key] as $arr) {
+
+                            $a = addtocart($iddh, $arr['id_pr'], $arr['tensp'], $arr['hinh'], $arr['giasp'], $arr['sl']);
+
+                        }
+                        $showcart = showcart($_SESSION['iddh']);
+                        $showtt = showtt($_SESSION['iddh']);
+                        if($_POST['pttt'] == "Momo") {
+                            header('location:index.php?act=momo');
+                        }elseif($_POST['pttt'] == "atm"){
+                            header('location:index.php?act=momo_atm');
+                        }else{
+                           /*  header('location:index.php?act=bill'); */
+                        }
                        
-                        foreach($_SESSION[$key] as $arr){
-                            $b= implode(', ', $arr);
-                           $a = addtocart($iddh,$arr['id_pr'],$arr['tensp'],$arr['hinh'],$arr['giasp'],$arr['sl']);
-                        }                                               
+
+
+
                     }
                     unset($_SESSION[$key]);
-                }                
+
+                }
+
+
             }
             include 'thongtin.php';
+
+            break;
+        case 'bill':
+            $showcart = showcart($_SESSION['iddh']);
+            $showtt = showtt($_SESSION['iddh']);
+            include "bill.php";
+            break;
+        case 'momo':
+
+            include "xulythanhtoanmomo.php";
+            break;
+        case 'momo_atm':
+    
+            include "xulythanhtoanmomo_atm.php";
             break;
         default:
             //code//

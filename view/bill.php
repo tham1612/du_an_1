@@ -24,20 +24,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- BASE CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
     <!-- SPECIFIC CSS -->
-    <link href="css/cart.css" rel="stylesheet">
+    <link href="../css/account.css" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
 
 </head>
+<style>
+    .anh {
+        width: 80px;
+    }
+</style>
 
 <body>
     <div id="pape">
         <main class="bg_gray">
+
             <div class="container margin_30">
                 <div class="page_header">
                     <div class="breadcrumbs">
@@ -47,139 +53,136 @@
                             <li>Page active</li>
                         </ul>
                     </div>
-                    <h1>Cart page</h1>
+                    <h1>HÓA ĐƠN MUA HÀNG</h1>
                 </div>
-
                 <!-- /page_header -->
-                <table class="table table-striped cart-list">
-                    <thead>
-                        <tr>
-                            <th>
-                                Product
-                            </th>
-                            <th>
-                                Price
-                            </th>
-                            <th>
-                                Quantity
-                            </th>
-                            <th>
-                                Subtotal
-                            </th>
-                            <th>
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-6 col-md-8">
+                        <div class="box_account">
+                            <h3 class="client">Đơn hàng</h3>
+                           
+                                <table class="table table-striped cart-list">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Price
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
 
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $i = 0;
-                        if(isset($_SESSION['user'])) {
-                            $userID = $_SESSION['user']['id_tk'];
-                            $key = "giohang-$userID";
-                            $tong = 0;
-                            if(!empty($_SESSION[$key])) {
-                                foreach($_SESSION[$key] as $arr) {
-                                    $tong += $arr['tt'];
-                                    $linksp = "index.php?act=sanphamct&idsp=";
-                                    echo '<tr>
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 0;
+                                        if(isset($_SESSION['user'])) {
+                                            $userID = $_SESSION['user']['id_tk'];
+                                            $key = "giohang-$userID";
+                                            $tong = 0;
+                                            if(!empty($_SESSION[$key])) {
+                                                foreach($_SESSION[$key] as $arr) {
+                                                    $tong += $arr['tt'];
+                                                    $linksp = "index.php?act=sanphamct&idsp=";
+                                                    echo '<tr>
                                         <td>
-                                            <div class="thumb_cart">
-                                            <a href="'.$linksp.'"><img src=" '.$arr['hinh'].'" class="lazy" alt="Image"></a>
+                                            <div class="">
+                                            <a href="'.$linksp.'"><img src=" '.$arr['hinh'].'" class="anh" alt="Image" ></a>
                                             </div>
-                                            <span class="item_cart">'.$arr['tensp'].'</span>
+                                            
                                         </td>
+                                        <td>
+                                        <strong>'.$arr['tensp'].'</strong>
+                                    </td>
                                         <td>
                                             <strong>'.$arr['giasp'].'</strong>
                                         </td>
                                         <td>
                                     
-                                        
-                                            <div class="numbers-row">
-                                                <input type="text" value="'.$arr['sl'].'" id="quantity_1" class="qty2" name="sl">
+                                             
+                                               <strong>'.$arr['sl'].'</strong>
                                             
-                                            </div>
+                                
                                         
                                         
                                         </td>
-                                        <td>
-                                            <strong>'.$arr['tt'].'</strong>
-                                        </td>
-                                        <td class="options">
-                                            <a href="index.php?act=decart&i='.$i.'"><i class="ti-trash" name="xoaspcart"></i></a>
-                                        </td>
+                                       
+                                       
                                         
                                     </tr>';
-                                    $i++;
-                                }
-                            }
-                        }
-                        ?>
-                       
-                    </tbody>
-                </table>
+                                                    $i++;
+                                                }
+                                            }
+                                        }
+                                        ?>
 
-                <div class="row add_top_30 flex-sm-row-reverse cart_actions">
-                    <div class="col-sm-4 text-end">
-                        <a href="index.php"><button type="button" class="btn_1 gray" name="xoagiohang">Tiếp tục mua
-                                hàng</button></a>
-                        <button type="button" class="btn_1 gray">Update Cart</button>
-                        <a href="index.php?act=decart&xoagiohang=true"><button type="submit" class="btn_1 gray"
-                                name="xoagiohang">Xoa
-                                gio hang</button></a>
-                    </div>
-
-                    <div class="col-sm-8">
-                        <div class="apply-coupon">
-                            <div class="form-group">
-                                <div class="row g-2">
-                                    <div class="col-md-6"><input type="text" name="coupon-code" value=""
-                                            placeholder="Promo code" class="form-control"></div>
-                                    <div class="col-md-4"><button type="button" class="btn_1 outline">Apply
-                                            Coupon</button></div>
-                                </div>
-                            </div>
+                                    </tbody>
+                                </table>
+                                <!-- /form_container -->
+                           
                         </div>
+                        <!-- /box_account -->
+
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-8">
+                        <div class="box_account">
+                            <h3 class="new_client">Thông tin và địa chỉ người nhận </h3> <small class="float-right pt-2">
+                               </small>
+                           
+                                <div class="box_general summary">
+
+                                    <?php
+                                    $i = 0;
+                                    $tong = 0; /*  */
+                                    if(isset($_SESSION['user'])) {
+                                        $userID = $_SESSION['user']['id_tk'];
+                                        $key = "giohang-$userID";
+                                        if(!empty(  $_SESSION[ $userID][$iddh])) {
+                                            foreach(  $_SESSION[ $userID][$idhd] as $arr) {                    
+                                               echo '  <ul>                               
+                                                    <li class="clearfix"><em><strong>Tên người nhận:</strong></em> <span>'.$arr['name'].'</span></li>     
+                                                    <li class="clearfix"><em><strong>Email:</strong></em> <span>'.$arr['email'].'</span></li> 
+                                                    <li class="clearfix"><em><strong>Dịa chỉ:</strong></em> <span>'.$arr['diachi'].'</span></li> 
+                                                    <li class="clearfix"><em><strong>Số điện thoại:</strong></em> <span>'.$arr['tel'].'</span></li> 
+                                                    <li class="clearfix"><em><strong>Phương thức thanh toán:</strong></em> <span>'.$arr['pttt'].'</span></li>  
+                                                    <li class="clearfix"><em><strong>Tổng đơn hàng:</strong></em> <span>'.$arr['tong'].'</span></li>  
+                                                    
+                                                    </ul> ';
+                                            }
+                                        }
+
+                                    }
+                                    ?>
+
+    
+                                  
+                                    <div class="total clearfix">Mã đơn hàng: <span>
+                                            <?php echo $tong ?>
+                                        </span></div><small class="float-right pt-2">Để check trạng thái đơn hàng bằng cách tìm kiếm mã đơn hàng
+                               </small>
+                                 
+
+                                    <a href="index.php" class="btn_1 full-width"><input type="submit"
+                                            value="Tiếp tục mua hàng" name="thanhtoan"></a>
+                                </div>
+                                <!-- /form_container -->
+                          
+                        </div>
+                        <!-- /box_account -->
                     </div>
                 </div>
-                <!-- /cart_actions -->
-
+                <!-- /row -->
             </div>
             <!-- /container -->
-
-            <div class="box_cart">
-                <div class="container">
-                    <div class="row justify-content-end">
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <ul>
-                                <?php
-                                echo ' <li>
-                                <span>Subtotal</span> '.$tong.'
-                            </li>
-                            <li>
-                                <span>Shipping</span> $7.00
-                            </li>
-                            <li>
-                                <span>Total</span> $247.00
-                            </li>';
-                                ?>
-                                <!-- <li>
-                                    <span>Subtotal</span> $240.00
-                                </li>
-                                <li>
-                                    <span>Shipping</span> $7.00
-                                </li>
-                                <li>
-                                    <span>Total</span> $247.00
-                                </li> -->
-                            </ul>
-                            <a href="index.php?act=thongtin" class="btn_1 full-width cart" name="muangay">Mua ngay</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /box_cart -->
-
         </main>
     </div>
 </body>

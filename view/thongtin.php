@@ -97,14 +97,14 @@
                             <li>
                                 <label class="container_radio">Thẻ tín dụng<a href="#0" class="info"
                                         data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-                                    <input type="radio" name="pttt" checked value="Thẻ tín dung">
+                                    <input type="radio" name="pttt" checked value="atm">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label class="container_radio">Vnpay<a href="#0" class="info" data-bs-toggle="modal"
+                                <label class="container_radio">Momo<a href="#0" class="info" data-bs-toggle="modal"
                                         data-bs-target="#payments_method"></a>
-                                    <input type="radio" name="pttt" value="Vnpay">
+                                    <input type="radio" name="pttt" value="Momo">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -191,17 +191,25 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            <input type="hidden" name="tong" value="<?= $tong ?>">
+                <input type="hidden" name="id_tk" value="<?php $userID ?>">
+                <input type="hidden" name="iddh" value="<?= $iddh ?>">
+        
+                            <input type="submit" value="Xác nhận thanh toán" name="thanhtoan">   
+                            <input type="submit" value="Thanh toán MOMO atm" name="momo">     </form>
+                           <!--  <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
+                                action="xulythanhtoanmomo.php">
+                                <input type="submit" value="Thanh toán MOMO atm" name="momo">
+                            </form> -->
 
-                            <a href="confirm.html" class="btn_1 full-width"><input type="submit"
-                                    value="Xác nhận thanh toán" name="thanhtoan"></a>
+
                         </div>
+
                         <!-- /box_general -->
                     </div>
                     <!-- /step -->
                 </div>
-                <input type="hidden" name="tong" value="<?= $tong ?>">
-                <input type="hidden" name="id_tk" value="<?php $userID ?>">
-                </form>
+               
 
                 <!-- /row -->
             </div>

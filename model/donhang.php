@@ -30,3 +30,15 @@ function addtocart($iddh, $id_pr, $tensp, $img, $gia, $sl) {
 values('$iddh','$id_pr',' $tensp',' $img',' $gia',' $sl')";
   pdo_execute($sql);
 }
+function showcart($iddh){
+  $sql="select * from carts where id_dh='".$iddh."'";
+  $sp=pdo_query_one($sql);
+  return $sp;
+
+}
+function showtt($iddh){
+  $sql="select * from donhang where id_dh='".$iddh."'";
+  $sp=pdo_query_one($sql);
+  return $sp;
+     
+}
