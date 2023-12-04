@@ -107,10 +107,10 @@
                                                     <h3>Những Trang Khác</h3>
                                                     <ul>
                                                         <li><a href="index.php?act=addcart"> Giỏ Hàng</a></li>
-                                                        <li><a href="checkout.html">Check Out Page</a></li>
+                                                        <li><a href="index.php?act=thongtin">Check Out Page</a></li>
                                                         <li><a href="confirm.html">Xác nhận trang mua hàng</a></li>
                                                         <li><a href="taikhoan/dangki-dangnhap.php">Trang Tạo Tài Khoản </a></li>
-                                                        <li><a href="theodoidonhang.html">Theo dõi đơn Hàng</a></li>
+                                                        <li><a href="index.php?act=trangthai">Theo dõi đơn Hàng</a></li>
                                                         <li><a href="trogiup.html">Trợ giúp </a></li>
                                                         <li><a href="trogiup2.html">Trợ giúp 2</a></li>
                                                         <li><a href="danhgia.html">Đánh Giá</a></li>
