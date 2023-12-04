@@ -170,6 +170,28 @@
                                 <li class="sidebar-item"><a href="index.php?act=list_carts" class="sidebar-link"><i
                                             class="mdi mdi-view-dashboard"></i><span class="hide-menu"> danh sách carts
                                         </span></a></li>
+                               <!--  <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                                            class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                                            class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                                            class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                                            class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option
+                                        </span></a></li> -->
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i
+                                    class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Thống kê
+                                </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="index.php?act=thongke" class="sidebar-link"><i
+                                            class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Thống kê sản phẩm-danh mục
+                                        </span></a></li>
                                 <li class="sidebar-item"><a href="#" class="sidebar-link"><i
                                             class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery
                                         </span></a></li>

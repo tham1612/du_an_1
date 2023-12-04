@@ -5,7 +5,7 @@ include "../model/danhmuc.php";
 include "../model/sanpham.php";
 include "../model/taikhoan.php";
 include "../model/donhang.php";
-
+include "../model/thongke.php";
 if(isset($_GET['act'])) {
     $act = $_GET['act'];
     switch($act) {
@@ -183,31 +183,39 @@ if(isset($_GET['act'])) {
             $result_carts = result_carts($limit, $start);
             include "carts/list.php";
             break;
-            case 'suacart':
-                if(isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $dm = loadone_carts($_GET['id']);
-                }
-                include "carts/update.php";
-                break;
-            case 'updatecart':
-                if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-                    $tt = $_POST['tt'];
-                    $id = $_POST['id'];
-                    update_carts($_POST['id'], $tt);
-                    $thongbao = "banj đã sửa đổi thành công";
-                }
-                $limit = 10;
-                if(isset($_GET['page'])) {
-                    $page = $_GET['page'];
-    
-                } else {
-                    $page = 1;
-                }
-                $start = ($page - 1) * $limit;
-                $result_carts = result_carts($limit, $start);
-                include "carts/list.php";
-                break;
-      
+        case 'suacart':
+            if(isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $dm = loadone_carts($_GET['id']);
+            }
+            include "carts/update.php";
+            break;
+        case 'updatecart':
+            if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                $tt = $_POST['tt'];
+                $id = $_POST['id'];
+                update_carts($_POST['id'], $tt);
+                $thongbao = "banj đã sửa đổi thành công";
+            }
+            $limit = 10;
+            if(isset($_GET['page'])) {
+                $page = $_GET['page'];
+
+            } else {
+                $page = 1;
+            }
+            $start = ($page - 1) * $limit;
+            $result_carts = result_carts($limit, $start);
+            include "carts/list.php";
+            break;
+        case 'thongke':
+            $dsthongke = load_thongke_sanpham_danhmuc();
+            include "thongke/thongkesp-dm.php";
+            break;
+        case 'bieudosp-dm':
+            $dsthongke = load_thongke_sanpham_danhmuc();
+            include "thongke/bieudosp-dm.php";
+            break;
+
 
         default:
             include "home.php";
