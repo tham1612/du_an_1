@@ -12,21 +12,21 @@
                     <th>HÌNH</th>
                     <th>GIÁ </th>
                     <th>SỐ LƯỢNG</th>
-                    <th>TRẠNG THÁI</th>
+                 
                     <th>CẬP NHẬT TT</th>
                     <th></th>
                 </tr>
                 <?php
                 foreach( $result_carts as $sanpham) {
                     extract($sanpham);
-                    $suatt = "index.php?act=suacart&id=".$id_cart;
-                /*     $hinhpath = "../upload//".$img;
+               $suatt = "index.php?act=suacart&id=".$id_cart;
+                   /* $hinhpatt = "../upload/".$img;
                     if(is_file($hinhpath)) {
                         $hinh = "<img src='".$hinhpath."'height=80'>";
 
                     } else {
                         $hinh = "no photo";
-                    } */
+                    }  */
                     # code...
                     echo '<tr>
                 <td> <input type="checkbox" name="" id=""></td>
@@ -35,7 +35,7 @@
                 <td>'.$img.' </td>
                 <td>'.$dongia.' </td>
                 <td>'.$soluong.' </td>
-                <td>'.$trangthai.' </td>
+               
                 <td><a href="'.$suatt.' "><input type="button" value="sửa"></a>
                  </tr>';
                 }

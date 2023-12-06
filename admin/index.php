@@ -199,7 +199,6 @@ if(isset($_GET['act'])) {
             $limit = 10;
             if(isset($_GET['page'])) {
                 $page = $_GET['page'];
-
             } else {
                 $page = 1;
             }

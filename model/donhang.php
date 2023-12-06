@@ -1,10 +1,10 @@
 <?php
 
 
-function taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel) {
+function taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel,$ngaymua) {
   $conn = pdo_get_connection();
-  $sql = "INSERT INTO donhang(madh, tongdonhang, pthuctt, id_tk, name, email, diachi, tel) 
-          VALUES (:madh, :tong, :pttt, :userID, :name, :email, :diachi, :tel)";
+  $sql = "INSERT INTO donhang(madh, tongdonhang, pthuctt, id_tk, name, email, diachi, tel,ngaymua) 
+          VALUES (:madh, :tong, :pttt, :userID, :name, :email, :diachi, :tel,:ngaymua)";
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(':madh', $madh);
   $stmt->bindParam(':tong', $tong);
@@ -14,7 +14,7 @@ function taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel) 
   $stmt->bindParam(':email', $email);
   $stmt->bindParam(':diachi', $diachi);
   $stmt->bindParam(':tel', $tel);
-
+  $stmt->bindParam(':ngaymua', $ngaymua);
   $stmt->execute();
   $last_id = $conn->lastInsertId();
   return $last_id;
@@ -44,7 +44,8 @@ function showtt($iddh){
 }
 function result_donhang($limit,$start){
  
-  $sql="SELECT donhang.madh ,donhang.tongdonhang ,donhang.pthuctt,donhang.name ,donhang.email,donhang.diachi,donhang.tel, taikhoan.user from donhang LEFT JOIN taikhoan on donhang.id_tk=taikhoan.id_tk order by donhang.id_dh desc LIMIT $start,$limit;";
+  $sql="SELECT donhang.madh ,donhang.tongdonhang ,donhang.pthuctt,donhang.name ,donhang.email,donhang.diachi,donhang.tel,donhang.trangthai, taikhoan.user 
+  from donhang LEFT JOIN taikhoan on donhang.id_tk=taikhoan.id_tk order by donhang.id_dh desc LIMIT $start,$limit;";
   $result = pdo_query($sql);
   return $result;
 }
@@ -56,7 +57,7 @@ function alll_row_donhang(){
 
 function result_carts($limit,$start){
  
-  $sql="SELECT carts.id_cart, carts.soluong, carts.dongia ,carts.tensp, carts.img ,carts.trangthai , donhang.madh 
+  $sql="SELECT carts.id_cart, carts.soluong, carts.dongia ,carts.tensp, carts.img, donhang.madh 
   from carts left JOIN donhang on donhang.id_dh=carts.id_dh group by carts.id_cart 
   order by carts.id_cart desc LIMIT $start,$limit;";
   $result = pdo_query($sql);
@@ -80,7 +81,7 @@ function loadone_carts($id)
 } */
 function update_carts($id, $tt) {
   $conn = pdo_get_connection();
-  $sql = "UPDATE carts SET trangthai = :tt WHERE id_cart = :id";
+  $sql = "UPDATE donhang SET trangthai = :tt WHERE id_dh = :id";
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(':tt', $tt);
   $stmt->bindParam(':id', $id);
@@ -102,10 +103,16 @@ function loadall_trangthai($tt1=""){
       $sql .= " and donhang.madh like '%" .$tt1. "%'";
    }
    
-  $sql.= " GROUP BY donhang.id_dh
+  $sql.= " GROUP BY donhang.id_dh 
    order by donhang.id_dh desc";
   $listdonhang=pdo_query($sql);
   return $listdonhang;
+}
+function load_bill($id){
+  $sql=" SELECT carts.tensp,carts.img,carts.dongia,carts.soluong,donhang.trangthai FROM carts LEFT JOIN donhang on donhang.id_dh=carts.id_dh WHERE carts.id_dh=".$id;
+ 
+  $dm = pdo_query_one($sql);
+  return $dm;
 }
 function loadone_cart($tt1){
   $sql="select * from sanpham where madh=".$tt1;

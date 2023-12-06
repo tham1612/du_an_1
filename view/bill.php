@@ -44,141 +44,72 @@
     <div id="pape">
         <main class="bg_gray">
 
-            <div class="container margin_30">
-                <div class="page_header">
-                    <div class="breadcrumbs">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Category</a></li>
-                            <li>Page active</li>
-                        </ul>
-                    </div>
-                    <h1>HÓA ĐƠN MUA HÀNG</h1>
-                </div>
-                <!-- /page_header -->
-                <div class="row justify-content-center">
-                    <div class="col-xl-6 col-lg-6 col-md-8">
-                        <div class="box_account">
-                            <h3 class="client">Đơn hàng</h3>
-                           
-                                <table class="table table-striped cart-list">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Product
-                                            </th>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Price
-                                            </th>
-                                            <th>
-                                                Quantity
-                                            </th>
+            <div class="track_order">
 
-                                            <th>
 
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $i = 0;
-                                        if(isset($_SESSION['user'])) {
-                                            $userID = $_SESSION['user']['id_tk'];
-                                            $key = "giohang-$userID";
-                                            $tong = 0;
-                                            if(!empty($_SESSION[$key])) {
-                                                foreach($_SESSION[$key] as $arr) {
-                                                    $tong += $arr['tt'];
-                                                    $linksp = "index.php?act=sanphamct&idsp=";
-                                                    echo '<tr>
+                <div class="container margin_60_35">
+
+                    <?php
+                    foreach($bill as $bill):
+
+                        if($trangthai == 0) {
+                            $t = "đăt hàng thành công";
+                        } elseif($trangthai == 1) {
+                            $t = "Đang vận chuyển";
+                        } elseif($trangthai == 2) {
+                            $t = "đã giao";
+                        }
+
+                        ?>
+                        <div class="main_title">
+                            <h2>CHI TIẾT ĐƠN HÀNG</h2>
+
+                        </div>
+                        <!-- Bước 2: Thanh toán và vận chuyển -->
+                        <div class="step last">
+                            <h3>Đơn hàng của bạn</h3>
+                            <div class="box_general summary">
+                                <table style="border: 1px solid black; border-collapse: collapse;">
+                                    <tr>
+                                        <th>Tên sản phẩm</th>
+                                        <th>img</th>
+                                        <th>số lượng</th>
+                                        <th>Giá</th>
+                                        <th>Trang thai</th>
+
+                                        <th></th>
+                                    </tr>
+                              
+                                    <tr>
                                         <td>
-                                            <div class="">
-                                            <a href="'.$linksp.'"><img src=" '.$arr['hinh'].'" class="anh" alt="Image" ></a>
-                                            </div>
-                                            
+                                            <?= $tensp ?>
                                         </td>
                                         <td>
-                                        <strong>'.$arr['tensp'].'</strong>
-                                    </td>
-                                        <td>
-                                            <strong>'.$arr['giasp'].'</strong>
+                                            <?= $img ?>
                                         </td>
                                         <td>
-                                    
-                                             
-                                               <strong>'.$arr['sl'].'</strong>
-                                            
+                                            <?= $soluong ?>
+                                        </td>
+                                        <td>
+                                            <?= $dongia ?>
+                                        </td>
+                                        <td>
+                                            <?= $t ?>
+                                        </td>
+
+                                        <td><input type="submit" class="bt" name="chitiet" value="xem chi tiet"></td>
+                                        <input type="hidden" name="id" value=<?= $id ?>>
+                                    </tr>
+
                                 
-                                        
-                                        
-                                        </td>
-                                       
-                                       
-                                        
-                                    </tr>';
-                                                    $i++;
-                                                }
-                                            }
-                                        }
-                                        ?>
-
-                                    </tbody>
                                 </table>
-                                <!-- /form_container -->
-                           
+                            </div>
                         </div>
-                        <!-- /box_account -->
+                        <!-- /step -->
 
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-8">
-                        <div class="box_account">
-                            <h3 class="new_client">Thông tin và địa chỉ người nhận </h3> <small class="float-right pt-2">
-                               </small>
-                           
-                                <div class="box_general summary">
+                        <!-- /products_carousel -->
+                    <?php endforeach; ?>
 
-                                    <?php
-                                    $i = 0;
-                                    $tong = 0; /*  */
-                                    if(isset($_SESSION['user'])) {
-                                        $userID = $_SESSION['user']['id_tk'];
-                                        $key = "giohang-$userID";
-                                        if(!empty(  $_SESSION[ $userID][$iddh])) {
-                                            foreach(  $_SESSION[ $userID][$idhd] as $arr) {                    
-                                               echo '  <ul>                               
-                                                    <li class="clearfix"><em><strong>Tên người nhận:</strong></em> <span>'.$arr['name'].'</span></li>     
-                                                    <li class="clearfix"><em><strong>Email:</strong></em> <span>'.$arr['email'].'</span></li> 
-                                                    <li class="clearfix"><em><strong>Dịa chỉ:</strong></em> <span>'.$arr['diachi'].'</span></li> 
-                                                    <li class="clearfix"><em><strong>Số điện thoại:</strong></em> <span>'.$arr['tel'].'</span></li> 
-                                                    <li class="clearfix"><em><strong>Phương thức thanh toán:</strong></em> <span>'.$arr['pttt'].'</span></li>  
-                                                    <li class="clearfix"><em><strong>Tổng đơn hàng:</strong></em> <span>'.$arr['tong'].'</span></li>  
-                                                    
-                                                    </ul> ';
-                                            }
-                                        }
-
-                                    }
-                                    ?>
-
-    
-                                  
-                                    <div class="total clearfix">Mã đơn hàng: <span>
-                                            <?php echo $tong ?>
-                                        </span></div><small class="float-right pt-2">Để check trạng thái đơn hàng bằng cách tìm kiếm mã đơn hàng
-                               </small>
-                                 
-
-                                    <a href="index.php" class="btn_1 full-width"><input type="submit"
-                                            value="Tiếp tục mua hàng" name="thanhtoan"></a>
-                                </div>
-                                <!-- /form_container -->
-                          
-                        </div>
-                        <!-- /box_account -->
-                    </div>
                 </div>
                 <!-- /row -->
             </div>
