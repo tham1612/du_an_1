@@ -205,7 +205,6 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                     //    print_r($_SESSION);die;
                 }
 
-
                 include "giohang.php";
             } else {
                 echo "<script>alert('vui lòng đăng nhập để thêm vào giỏ hàng')</script>";
@@ -217,7 +216,6 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
             if(isset($_GET['i']) && $_GET['i'] >= 0) {
                 array_splice($_SESSION[$key], $_GET['i'], 1);
-
             }
             if(isset($_GET['xoagiohang'])) {
                 $userID = $_SESSION['user']['id_tk'];
@@ -228,7 +226,6 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             if(isset($_SESSION['giohang']) && $_GET['i'] >= 0) {
                 //header('locatinon:index.php?act=addcart');
                 echo "<script>window.location.href='index.php?act=addcart';</script>";
-
             } else {
                 echo "<script>window.location.href='index.php';</script>";
                 //header('locatinon:index.php');
@@ -246,9 +243,10 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $tel = $_POST['tel'];
                 $pttt = $_POST['pttt'];
                 $madh = "ABCD".rand(0, 9999);
+                $ngaymua = date(' Y/m/d');
                 $_SESSION['tong'] = $tong;
                 $_SESSION['madh'] = $madh;
-                $iddh = taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel);
+                $iddh = taodonhang($madh, $tong, $pttt, $userID, $name, $email, $diachi, $tel, $ngaymua);
                 $_SESSION['iddh'] = $iddh;
                 /* $_SESSION[ $userID][$iddh] = [
                    
@@ -260,13 +258,12 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                     'pttt' => $_POST['pttt'],
                     'madh' =>$madh
                 ]; */
+                $key = "giohang-$userID";
                 if((isset($_SESSION['user']))) {
                     if(!empty($_SESSION[$key])) {
 
                         foreach($_SESSION[$key] as $arr) {
-
                             $a = addtocart($iddh, $arr['id_pr'], $arr['tensp'], $arr['hinh'], $arr['giasp'], $arr['sl']);
-
                         }
                         $showcart = showcart($_SESSION['iddh']);
                         $showtt = showtt($_SESSION['iddh']);
@@ -277,36 +274,32 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                         } else {
                             echo '<script>alert("mã đơn hàng của quý khách là :'.$madh.'.sử dụng mã này để theo dõi đơn hàng");</script>';
                         }
-
-
-
-
                     }
                     unset($_SESSION[$key]);
-
-
                 }
                 header('locatinon:index.php');
-
-
             }
+
+
             include 'thongtin.php';
-
-
-
             break;
         /*       case 'bill':
-                  $showcart = showcart($_SESSION['iddh']);
-                  $showtt = showtt($_SESSION['iddh']);
-                  include "bill.php";
-                  break; */
+              $showcart = showcart($_SESSION['iddh']);
+              $showtt = showtt($_SESSION['iddh']);
+              include "bill.php";
+              break; */
         case 'momo':
 
             include "xulythanhtoanmomo.php";
             break;
+        case 'user':
+
+            include "user.php";
+            break;
         case 'momo_atm':
 
-            include "xulythanhtoanmomo_atm.php";
+            /*   include "xulythanhtoanmomo_atm.php"; */
+            include "t.php";
             break;
         case 'trangthai':
             if(isset($_POST['tt']) && ($_POST['tt'] != "")) {
@@ -316,22 +309,41 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                     foreach($trangthai0 as $trangthai1) {
                         extract($trangthai1);
                         if($trangthai == 0) {
-                            echo '<script>alert("đơn hàng của bạn đã đặt thành công và người bán đang chuẩn bị hàng");</script>';
+                          
                         } elseif($trangthai == 1) {
-                            echo '<script>alert("đơn hàng của bạn đang trên đường vận chuyển");</script>';
+                           
                         } elseif($trangthai == 2) {
                             echo '<script>alert("đơn hàng của bạn được giao thành công , hãy đánh giá và cho shop 5 sao nhá");</script>';
-
-                        } 
+                        }
+                       
+                       
+                       
+            
+                        
                     }
+                    
+
                 }
-                 if(empty($trangthai0)){
+                if(empty($trangthai0)) {
                     echo '<script>alert("mã đơn hàng của bạn tìm kiếm không tồn tại");</script>';
+
                 }
+
             }
+          
             /*  $donhang=loadone_cart($tt1);
           $trangthai=loadall_trangthai($tt1); */
             include "theodoidonhang.php";
+            break;
+        case 'bill':
+            if(isset($_POST['chitiet'])){
+                $id=$_POST['id'];
+                $bill=load_bill($id);                             
+            }
+           /*  echo "</pre>";
+            print_r($bill);
+            die; */
+            include "bill.php";
             break;
         default:
             //code//

@@ -220,10 +220,20 @@
                             <ul class="top_tools">
                                 <li>
                                     <div class="dropdown dropdown-cart">
-                                        <a href="index.php?act=addcart" class="cart_bt"><strong><?php count($_SESSION['giohang']) ?></strong></a>
-                                        <div class="dropdown-menu">
-                                            <ul>
+                                        
                                                 <?php
+                                                echo '<a href="index.php?act=addcart" class="cart_bt"><strong>
+                                                </strong></a>
+                                                <div class="dropdown-menu">
+                                                    <ul>';
+                                                if(!empty($_SESSION['giohang'])){
+                                                    echo"Số sản phẩm";
+                                                    count($_SESSION['giohang']);
+                                                }
+                                                else {
+                                                    echo '0';
+                                                }
+                                                
                                                 
                                                 $i = 0;
                                                 $tong = 0;

@@ -15,12 +15,22 @@
                     <th>EMAIL</th>
                     <th> SỐ ĐIỆN THOẠI </th>
                     <th>PHƯƠNG THỨC TT</th>
+                    <th>TRẠNG THÁI</th>
+            
                   
                     <th></th>
                 </tr>
                 <?php
                 foreach( $result_donhang as $sanpham) {
                     extract($sanpham);
+                    if($trangthai==0){
+                       $tt= "đăt hàng thành công";
+                    }elseif($trangthai==1){
+                       $tt= "Đang vận chuyển";
+                    }elseif($trangthai==2){
+                       $tt= "đã giao";
+                    }
+
                    
                     echo '<tr>
                 <td> <input type="checkbox" name="" id=""></td>
@@ -32,10 +42,14 @@
                 <td>'.$email.' </td>
                 <td>'.$tel.' </td>
                 <td>'.$pthuctt.' </td>
+                <td>'.$tt.' </td>
             
                  </tr>';
                 }
+
                 ?>
+                
+        
 
 
                 <div class="border-top">

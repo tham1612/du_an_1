@@ -192,12 +192,12 @@
                                 </label>
                             </div>
                             <input type="hidden" name="tong" value="<?= $tong ?>">
-                <input type="hidden" name="id_tk" value="<?php $userID ?>">
-                <input type="hidden" name="iddh" value="<?= $iddh ?>">
-        
-                            <input type="submit" value="Xác nhận thanh toán" name="thanhtoan">   
-                            <input type="submit" value="Thanh toán MOMO atm" name="momo">     </form>
-                           <!--  <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
+                            <input type="hidden" name="id_tk" value="<?php $userID ?>">
+                            <input type="hidden" name="iddh" value="<?= $iddh ?>">
+
+                            <input type="submit" value="Xác nhận thanh toán" name="thanhtoan">
+                            <input type="submit" value="Thanh toán MOMO atm" name="momo"> </form>
+                            <!--  <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
                                 action="xulythanhtoanmomo.php">
                                 <input type="submit" value="Thanh toán MOMO atm" name="momo">
                             </form> -->
@@ -209,7 +209,7 @@
                     </div>
                     <!-- /step -->
                 </div>
-               
+
 
                 <!-- /row -->
             </div>
