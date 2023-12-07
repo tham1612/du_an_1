@@ -137,99 +137,97 @@
                 </div>
                 <div class="container margin_60_35">
 
-                    <?php if(isset($trangthai0)): ?>
+                    <?php if (isset($trangthai0)): ?>
                         <form action="index.php?act=bill" method="post">
-                        <div class="main_title">
-                            <h2>THÔNG TIN ĐƠN HÀNG</h2>
+                            <div class="main_title">
+                                <h2>THÔNG TIN ĐƠN HÀNG</h2>
 
-                        </div>
-                        <!-- Bước 2: Thanh toán và vận chuyển -->
-                        <div class="step last">
-                            <h3>Đơn hàng của bạn</h3>
-                            <div class="box_general summary">
-                                <table style="border: 1px solid black; border-collapse: collapse;">
-                                    <tr>
-                                        <th>Tên người nhận</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Email</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Ngày mua hàng</th>
-                                        <th>Phương thức thanh toán</th>
-                                        <th>Tổng giá trị</th>
-                                        <th>Trạng thái</th>
-                                        <th></th>
-                                        <th></th>
-
-                                    </tr>
-                                    <?php foreach($trangthai0 as $tt):
-                                        if($trangthai == 0) {
-                                            $t = "chờ duyệt";
-                                        } elseif($trangthai == 1) {
-                                            $t = "Đã xác nhận ";
-                                        } elseif($trangthai == 2) {
-                                            $t = "Đang vận chuyển";
-                                        } elseif($trangthai == 3) {
-                                            $t = "Đã giao";
-                                        }
-                                        $suatt = "index.php?act=suatt&id_dh=".$id_dh;
-                                        ?>
+                            </div>
+                            <!-- Bước 2: Thanh toán và vận chuyển -->
+                            <div class="step last">
+                                <h3>Đơn hàng của bạn</h3>
+                                <div class="box_general summary">
+                                    <table style="border: 1px solid black; border-collapse: collapse;">
                                         <tr>
-                                            <td>
-                                                <?= $name ?>
-                                            </td>
-                                            <td>
-                                                <?= $tel ?>
-                                            </td>
-                                            <td>
-                                                <?= $email ?>
-                                            </td>
-                                            <td>
-                                                <?= $diachi ?>
-                                            </td>
-                                            <td>
-                                                <?= $ngaymua ?>
-                                            </td>
-                                            <td>
-                                                <?= $pthuctt ?>
-                                            </td>
-                                            <td>
-                                                <?= $tongdonhang ?> vnd
-                                            </td>
-                                            <td>
-                                                <?= $t ?>
-                                            </td>
-                                            <td> <a href="index.php?act=bill"><input type="submit" class="bt" name="chitiet"
-                                                        value="xem chi tiet"> </a></td>
-                                            <td><a href="index.php?act=suatt"><input class="button1 " name="suatt" value="Sửa"></a>
-                                            </td>
-
+                                            <th>Tên người nhận</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Email</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Ngày mua hàng</th>
+                                            <th>Phương thức thanh toán</th>
+                                            <th>Tổng giá trị</th>
+                                            <th>Trạng thái</th>
+                                            <th></th>
+                                            <th></th>
 
                                         </tr>
-                                      
-                                       
-                                        
-                                            <input type="hidden" name="id" value="<?= $id_dh ?>">
-                                        </form>
-                                    <?php endforeach; ?>
-                                   
-                                </table>
-                            </div>
-                        </div>
-                        <!-- /step -->
+                                        <?php foreach ($trangthai0 as $tt):
+                                            if ($trangthai == 0) {
+                                                $t = "chờ duyệt";
+                                            } elseif ($trangthai == 1) {
+                                                $t = "Đã xác nhận ";
+                                            } elseif ($trangthai == 2) {
+                                                $t = "Đang vận chuyển";
+                                            } elseif ($trangthai == 3) {
+                                                $t = "Đã giao";
+                                            }
+                                            $suatt = "index.php?act=suatt&id_dh=" . $id_dh;
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $name ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tel ?>
+                                                </td>
+                                                <td>
+                                                    <?= $email ?>
+                                                </td>
+                                                <td>
+                                                    <?= $diachi ?>
+                                                </td>
+                                                <td>
+                                                    <?= $ngaymua ?>
+                                                </td>
+                                                <td>
+                                                    <?= $pthuctt ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tongdonhang ?> vnd
+                                                </td>
+                                                <td>
+                                                    <?= $t ?>
+                                                </td>
+                                                <td> <a href="index.php?act=bill"><input type="submit" class="bt" name="chitiet"
+                                                            value="xem chi tiet"> </a></td>
+                                                <td><a href="<?php   echo $suatt ?>"><input class="button1 " name="suatt"
+                                                            value="Sửa"></a>
+                                                    
+                                                </td>
+                                                <input type="hidden" name="id" value="<?= $id_dh ?>">
+                                            </tr>
+                                           
+                            </form>
+                        <?php endforeach; ?>
 
-                        <!-- /products_carousel -->
-
-                    <?php endif; ?>
+                        </table>
+                    </div>
                 </div>
+                <!-- /step -->
 
-                <!-- /container -->
-            </div>
-            <!-- /track_order -->
+                <!-- /products_carousel -->
+
+            <?php endif; ?>
+    </div>
+
+    <!-- /container -->
+    </div>
+    <!-- /track_order -->
 
 
 
-            <!-- /bg_white -->
-        </main>
+    <!-- /bg_white -->
+    </main>
     </div>
 
 </body>

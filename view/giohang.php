@@ -157,10 +157,10 @@
                                 <span>Subtotal</span> '.$tong.'
                             </li>
                             <li>
-                                <span>Shipping</span> $7.00
+                                <span>Shipping</span> 0 VND
                             </li>
                             <li>
-                                <span>Total</span> $247.00
+                                <span>Total</span>  '.$tong.' VND
                             </li>';
                                 ?>
                                 <!-- <li>

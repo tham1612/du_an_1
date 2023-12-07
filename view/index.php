@@ -2,12 +2,13 @@
 
 session_start();
 ob_start();
-function check_input($data){
-    $data=trim($data);
-    $data=htmlspecialchars($data);
+function check_input($data)
+{
+    $data = trim($data);
+    $data = htmlspecialchars($data);
     return $data;
 }
-if(!isset($_SESSION['giohang']))
+if (!isset($_SESSION['giohang']))
     $_SESSION['giohang'] = [];
 include "../model/pdo.php";
 include "../model/sanpham.php";
@@ -16,7 +17,7 @@ include "../model/taikhoan.php";
 include "../model/binhluan.php";
 include "../model/donhang.php";
 $dsdm = loadall_danhmuc();
-if(isset($_GET['iddm']) && ($_GET['iddm'])) {
+if (isset($_GET['iddm']) && ($_GET['iddm'])) {
     $iddm = $_GET['iddm'];
 } else {
     $iddm = 0;
@@ -27,17 +28,17 @@ include "global.php";
 $spnew = loadall_sanpham_home();
 $dstop10 = loadall_sanpham_home_top10();
 
-if(isset($_GET['act']) && ($_GET['act'] != "")) {
+if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
-    switch($act) {
+    switch ($act) {
         case 'sanpham':
 
-            if(isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
+            if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
                 $kyw = $_POST['kyw'];
             } else {
                 $kyw = "";
             }
-            if(isset($_GET['iddm']) && ($_GET['iddm']) > 0) {
+            if (isset($_GET['iddm']) && ($_GET['iddm']) > 0) {
                 $iddm = $_GET['iddm'];
             } else {
                 $iddm = 0;
@@ -49,20 +50,18 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "sp.php";
             break;
         case 'sanphamct':
-            if(isset($_POST['guibinhluan'])) {
 
-                insert_binhluan($_POST['noidung'], $_POST['idpro']);
+            if (isset($_POST['guibinhluan']) && ($_POST['guibinhluan'])) {
+                $noidung = $_POST['noidung'];
+                $idpro = $_POST['id_pr'];
+                $iduser = $_SESSION['user']['id_tk'];
+                $ngaybinhluan = date('h:i:sa d/m/Y');
+                insert_binhluan($noidung, $iduser, $idpro, $ngaybinhluan);
+                echo '<script>alert("bạn đã bình luận thanh công");</script>';
+                $dsbl = loadall_binhluan($idpro);
+
             }
-
-            /*   if (isset($_POST['guibinhluan']) && ($_POST['guibinhluan'])) {
-                  $noidung = $_POST['noidung'];
-                  $idpro = $_POST['idpro'];
-                  $iduser = $_SESSION['user']['id_tk'];
-                  $ngaybinhluan = date('h:i:sa d/m/Y');
-                  insert_binhluan($noidung, $iduser, $idpro, $ngaybinhluan);
-                  $dsbl = loadall_binhluan($idpro);
-              } */
-            if(isset($_GET['idsp']) && ($_GET['idsp'])) {
+            if (isset($_GET['idsp']) && ($_GET['idsp'])) {
                 $id = $_GET['idsp'];
                 $onesp = loadone_sanpham($id);
                 extract($onesp);
@@ -81,7 +80,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             $sosanpham1 = sosanphamcuatungdanhmuc();
             include "locsp.php";
         case 'dangky':
-            if(isset($_POST['dangky']) && ($_POST['dangky'])) {
+            if (isset($_POST['dangky']) && ($_POST['dangky'])) {
                 $email = $_POST['email'];
                 $pass = $_POST['pass'];
                 $user = $_POST['user'];
@@ -103,11 +102,11 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "taikhoan/dangki-dangnhap.php";
             break;
         case "dangnhap":
-            if(isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
+            if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
                 $user = $_POST['user'];
                 $pass = $_POST['pass'];
                 $checkuser = checkuser($user, $pass);
-                if(is_array($checkuser)) {
+                if (is_array($checkuser)) {
                     $_SESSION['user'] = $checkuser;
                     echo '<script>alert("Chúc mừng đăng nhập thành công");</script>';
                     // header('Location:index.php?act=home');
@@ -139,18 +138,18 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'quenmk':
 
-            if(isset($_POST['guimail']) && ($_POST['guimail'])) {
+            if (isset($_POST['guimail']) && ($_POST['guimail'])) {
                 $email = $_POST['email'];
                 $checkemail = checkemail($email);
-                if(is_array($checkemail)) {
+                if (is_array($checkemail)) {
                     $thongbao = '<script>
                             var thongbao = new Object();
                             thongbao.name = "mật khẩu của bạn là:";
-                            thongbao.name2="'.$checkemail['pass'].'";
+                            thongbao.name2="' . $checkemail['pass'] . '";
                         
                         
                             thongbao.intro = function() {
-                                alert( "mật khẩu của bạn là:'.$checkemail['pass'].'");
+                                alert( "mật khẩu của bạn là:' . $checkemail['pass'] . '");
                     
                     
                             }
@@ -177,7 +176,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'thoat':
             //code//
-            if(isset($_SESSION['user'])) {
+            if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
             }
             header('Location: /view/index.php');
@@ -187,8 +186,8 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
             // session_destroy();
             // die;
-            if(isset($_SESSION['user'])) {
-                if(isset($_POST['addtocart'])) {
+            if (isset($_SESSION['user'])) {
+                if (isset($_POST['addtocart'])) {
                     $userID = $_SESSION['user']['id_tk'];
                     $id_pr = $_POST['id_pr'];
                     $tensp = $_POST['tensp'];
@@ -196,7 +195,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                     $gia = $_POST['giasp'];
                     $sl = isset($_POST['sl']) ? $_POST['sl'] : 1;
                     $key = "giohang-$userID";
-                    if(isset($_SESSION[$key][$id_pr])) {
+                    if (isset($_SESSION[$key][$id_pr])) {
                         $_SESSION[$key][$id_pr]['sl'] = intval($sl) + intval($_SESSION[$key][$id_pr]['sl']);
                         $_SESSION[$key][$id_pr]['tt'] = $_SESSION[$key][$id_pr]['sl'] * $_SESSION[$key][$id_pr]['giasp'];
                     } else {
@@ -222,16 +221,16 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'decart':
 
-            if(isset($_GET['i']) && $_GET['i'] >= 0) {
+            if (isset($_GET['i']) && $_GET['i'] >= 0) {
                 array_splice($_SESSION[$key], $_GET['i'], 1);
             }
-            if(isset($_GET['xoagiohang'])) {
+            if (isset($_GET['xoagiohang'])) {
                 $userID = $_SESSION['user']['id_tk'];
                 $key = "giohang-$userID";
                 unset($_SESSION[$key]);
                 // var_dump($_SESSION);
             }
-            if(isset($_SESSION['giohang']) && $_GET['i'] >= 0) {
+            if (isset($_SESSION['giohang']) && $_GET['i'] >= 0) {
                 //header('locatinon:index.php?act=addcart');
                 echo "<script>window.location.href='index.php?act=addcart';</script>";
             } else {
@@ -242,7 +241,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
         case 'thongtin':
 
-            if(isset($_POST['thanhtoan'])) {
+            if (isset($_POST['thanhtoan'])) {
                 $userID = $_SESSION['user']['id_tk'];
                 $tong = $_POST['tong'];
                 $name = $_POST['name'];
@@ -250,7 +249,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 $email = $_POST['email'];
                 $tel = $_POST['tel'];
                 $pttt = $_POST['pttt'];
-                $madh = "ABCD".rand(0, 9999);
+                $madh = "ABCD" . rand(0, 9999);
                 $ngaymua = date(' Y/m/d');
                 $_SESSION['tong'] = $tong;
                 $_SESSION['madh'] = $madh;
@@ -267,20 +266,20 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                     'madh' =>$madh
                 ]; */
                 $key = "giohang-$userID";
-                if((isset($_SESSION['user']))) {
-                    if(!empty($_SESSION[$key])) {
+                if ((isset($_SESSION['user']))) {
+                    if (!empty($_SESSION[$key])) {
 
-                        foreach($_SESSION[$key] as $arr) {
+                        foreach ($_SESSION[$key] as $arr) {
                             $a = addtocart($iddh, $arr['id_pr'], $arr['tensp'], $arr['hinh'], $arr['giasp'], $arr['sl']);
                         }
                         $showcart = showcart($_SESSION['iddh']);
                         $showtt = showtt($_SESSION['iddh']);
-                        if($_POST['pttt'] == "Momo") {
+                        if ($_POST['pttt'] == "Momo") {
                             header('location:index.php?act=momo');
-                        } elseif($_POST['pttt'] == "atm") {
+                        } elseif ($_POST['pttt'] == "atm") {
                             header('location:index.php?act=momo_atm');
                         } else {
-                            echo '<script>alert("mã đơn hàng của quý khách là :'.$madh.'.sử dụng mã này để theo dõi đơn hàng");</script>';
+                            echo '<script>alert("mã đơn hàng của quý khách là :' . $madh . '.sử dụng mã này để theo dõi đơn hàng");</script>';
                         }
                     }
                     unset($_SESSION[$key]);
@@ -310,19 +309,19 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "t.php";
             break;
         case 'trangthai':
-            if(isset($_POST['tt']) && ($_POST['tt'] != "")) {
+            if (isset($_POST['tt']) && ($_POST['tt'] != "")) {
                 $tt1 = check_input($_POST['tt']);
                 $trangthai0 = loadall_trangthai($tt1);
-                if(isset($trangthai0)) {
-                    foreach($trangthai0 as $trangthai1) {
+                if (isset($trangthai0)) {
+                    foreach ($trangthai0 as $trangthai1) {
                         extract($trangthai1);
-                        if($trangthai == 0) {
+                        if ($trangthai == 0) {
 
-                        } elseif($trangthai == 1) {
+                        } elseif ($trangthai == 1) {
 
-                        } elseif($trangthai == 2) {
+                        } elseif ($trangthai == 2) {
 
-                        } elseif($trangthai == 3) {
+                        } elseif ($trangthai == 3) {
                             echo '<script>alert("đơn hàng của bạn được giao thành công , hãy đánh giá và cho shop 5 sao nhá");</script>';
                         }
 
@@ -330,7 +329,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
 
                 }
-                if(empty($trangthai0)) {
+                if (empty($trangthai0)) {
                     echo '<script>alert("mã đơn hàng của bạn tìm kiếm không tồn tại");</script>';
 
                 }
@@ -342,17 +341,17 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "theodoidonhang.php";
             break;
         case 'bill':
-            if(isset($_POST['chitiet'])) {
+            if (isset($_POST['chitiet'])) {
                 $id = $_POST['id'];
-            
+
             }
-            if(isset($_POST['suatt'])){
+            if (isset($_POST['suatt'])) {
                 $id = $_POST['id'];
-           
-                $ttsua=load_one_donhang($id);
+
+                $ttsua = load_one_donhang($id);
                 header('loaction:index.php?act=suatt.php');
-             }
-            
+            }
+
             $bill = load_bill($id);
             /*  echo "</pre>";
              print_r($bill);
@@ -360,17 +359,34 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             include "bill.php";
             break;
         case 'suatt':
-            if(isset($_POST['suatt'])){
+            if (isset($_POST['suatt'])) {
                 $id = $_POST['id'];
-           
-                $ttsua=load_one_donhang($id);
-               
-             }
-                $id = $_POST['id'];
-           
-            $ttsua=load_one_donhang($id);
-          
+            
+                $ttsua = load_one_donhang($id);
+
+            }
+         
+
+
+            $ttsua = load_one_donhang($id);
+
             include "suatt.php";
+            break;
+        case 'trogiup':
+
+            include "trogiup.php";
+            break;
+        case 'lienhe':
+
+            include "lienhe.php";
+            break;
+        case 'gioithieu':
+
+            include "gioithieu.php";
+            break;
+        case 'blog':
+
+            include "blog.php";
             break;
         default:
             //code//

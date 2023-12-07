@@ -19,7 +19,7 @@
                             <td> <input type="checkbox" name="" id=""></td>
                             <td>' . $id . '</td>
                             <td>' . $namedm . ' </td>
-                            <td><a href="' . $suadm . ' "><input type="button" value="sửa"></a> ,<a href="' . $xoadm . ' "><input type="button" value="xóa"></a></td>
+                            <td><a href="' . $suadm . ' "><input type="button" value="sửa"></a> ,   <a href="' . $xoadm . ' "><input type="button" value="xóa"></a></td>
                              </tr>';
                 }
                 ?>

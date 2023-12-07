@@ -107,13 +107,12 @@
                                                     <h3>Những Trang Khác</h3>
                                                     <ul>
                                                         <li><a href="index.php?act=addcart"> Giỏ Hàng</a></li>
-                                                        <li><a href="index.php?act=thongtin">Check Out Page</a></li>
-                                                        <li><a href="confirm.html">Xác nhận trang mua hàng</a></li>
+                                                        <li><a href="index.php?act=thongtin">Check Out Page</a></li>                                                   
                                                         <li><a href="taikhoan/dangki-dangnhap.php">Trang Tạo Tài Khoản </a></li>
                                                         <li><a href="index.php?act=trangthai">Theo dõi đơn Hàng</a></li>
-                                                        <li><a href="trogiup.html">Trợ giúp </a></li>
-                                                        <li><a href="trogiup2.html">Trợ giúp 2</a></li>
-                                                        <li><a href="danhgia.html">Đánh Giá</a></li>
+                                                        <li><a href="index.php?act=trogiup">Trợ giúp </a></li>
+                                                       
+                                                    
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-3 d-xl-block d-lg-block d-md-none d-sm-none d-none">
@@ -131,14 +130,14 @@
 
 
 
-                                    <li><a href="lienhe.html">Liên Hệ </a></li>
-                                    <li><a href="gioithieu.html">Giới Thiệu</a></li>
+                                    <li><a href="index.php?act=lienhe">Liên Hệ </a></li>
+                                    <li><a href="index.php?act=gioithieu">Giới Thiệu</a></li>
 
 
 
 
                                     <li>
-                                        <a href="blog.html">Blog</a>
+                                        <a href="index.php?act=blog">Blog</a>
                                     </li>
 
                                 </ul>

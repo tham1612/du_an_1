@@ -41,7 +41,7 @@
                 <h1> Cập Nhật Thông Tin Đơn Hàng</h1>
             </caption>
             <?php
-          if(empty(   $ttsua)):    echo "</pre>";
+          if(!empty(   $ttsua)):    echo "</pre>";
           print_r( $ttsua);
           die;?>
            <?php foreach ( $ttsua as $key => $value) :
@@ -54,7 +54,7 @@
                     <label for="">Tên người nhận:</label>
                     <input type="text" class="form-control" required name="user" value="<?= $name?>">
                 </div>
-               
+            
                 <div class="form-group">
                     <label for="">Email:</label>
                     <input type="email" class="form-control" id="" required name="email" value="<?= $email ?>">
