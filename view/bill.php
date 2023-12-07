@@ -35,9 +35,89 @@
 
 </head>
 <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .bt {
+        background-color: #f4511e;
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        font-size: 16px;
+        margin: 2px 1px;
+        opacity: 0.6;
+        transition: 0.3s;
+        display: inline-block;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
     .anh {
         width: 80px;
     }
+    .button1 {
+            position: relative;
+            background-color: #04AA6D;
+            border: none;
+            font-size: 16px;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            width: 50px;
+            text-align: center;
+            transition-duration: 0.4s;
+            text-decoration: none;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .button1:after {
+            content: "";
+            background: #f1f1f1;
+            display: block;
+            position: absolute;
+            padding-top: 3100%;
+            padding-left: 30%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .button1:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+        .mm{
+            background: red;
+        }
+        .m2{
+            width: 200px;
+        }
 </style>
 
 <body>
@@ -48,19 +128,13 @@
 
 
                 <div class="container margin_60_35">
-
-                    <?php
-                    foreach($bill as $bill):
-
-                        if($trangthai == 0) {
-                            $t = "đăt hàng thành công";
-                        } elseif($trangthai == 1) {
-                            $t = "Đang vận chuyển";
-                        } elseif($trangthai == 2) {
-                            $t = "đã giao";
-                        }
-
+                    <?php if(isset($bill)):
+                        /*  echo "<pre>";
+                         print_r($bill);
+                         die; */
                         ?>
+
+
                         <div class="main_title">
                             <h2>CHI TIẾT ĐƠN HÀNG</h2>
 
@@ -76,39 +150,61 @@
                                         <th>số lượng</th>
                                         <th>Giá</th>
                                         <th>Trang thai</th>
+                                  
 
-                                        <th></th>
+
                                     </tr>
-                              
-                                    <tr>
-                                        <td>
-                                            <?= $tensp ?>
-                                        </td>
-                                        <td>
-                                            <?= $img ?>
-                                        </td>
-                                        <td>
-                                            <?= $soluong ?>
-                                        </td>
-                                        <td>
-                                            <?= $dongia ?>
-                                        </td>
-                                        <td>
-                                            <?= $t ?>
-                                        </td>
+                                    <?php
+                                    foreach($bill as $bill):
+                                        $hinhpath = "../upload/".$bill["img"];
+                                        if(is_file($hinhpath)) {
+                                            $hinh = "<img src='".$hinhpath."'height=80'>";
 
-                                        <td><input type="submit" class="bt" name="chitiet" value="xem chi tiet"></td>
-                                        <input type="hidden" name="id" value=<?= $id ?>>
-                                    </tr>
+                                        } else {
+                                            $hinh = "no photo";
+                                        }
+                                        ?>
+                                        <tr>
+                                            <td>3
+                                                <?php echo $bill["tensp"] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $hinh ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $bill["soluong"] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $bill["dongia"] ?>
+                                            </td>
+                                            <td>
+                                                <?php if($bill["trangthai"] == 0) {
+                                                    echo "chờ duyệt ";
+                                                } elseif($bill["trangthai"] == 1) {
+                                                    echo "Đã xác nhận ";
+                                                } elseif($bill["trangthai"] == 2) {
+                                                    echo "Đang vận chuyển";
+                                                } elseif($bill["trangthai"] == 3) {
+                                                    echo "đã giao";
+                                                }
+                                                ?>
+                                            </td>
+                                           
 
-                                
+
+                                        </tr>
+                                    <?php endforeach; ?>
+
                                 </table>
                             </div>
                         </div>
                         <!-- /step -->
 
                         <!-- /products_carousel -->
-                    <?php endforeach; ?>
+
+                    <?php endif; ?>
+           
+                    <a href="index.php">         <input  class="button1  m2" value="tiếp tục mua hàng" ></a>
 
                 </div>
                 <!-- /row -->

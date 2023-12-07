@@ -8,9 +8,10 @@ function checkuser($user,$pass){
     $sp=pdo_query_one($sql);
     return $sp;
 }
-function update_taikhoan($id_tk,$user,$pass,$diachi,$tel){
-    $sql="update taikhoan set  user='".$user."',pass='".$pass."',diachi='".$diachi."' ,tel='".$tel."'where id_tk=".$id_tk;
-    pdo_execute($sql);
+function  update_taikhoan($id_tk,$user,$pass,$email,$diachi,$tel){
+    
+    $sql="update taikhoan set  user='".$user."',pass='".$pass."',email='".$email."',diachi='".$diachi."' ,tel='".$tel."'where id_tk=".$id_tk;
+pdo_execute($sql);
 }
 function checkemail($email){
     $sql="select * from taikhoan where email='".$email."'";

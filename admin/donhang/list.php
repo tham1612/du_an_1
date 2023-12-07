@@ -7,6 +7,7 @@
             <table>
                 <tr>
                     <th></th>
+             
                     <th>TÊN TÀI KHOẢN</th>
                     <th>TÊN NGƯỜI NHẬN</th>
                     <th>MÃ ĐƠN HÀNG</th>
@@ -23,17 +24,22 @@
                 <?php
                 foreach( $result_donhang as $sanpham) {
                     extract($sanpham);
+                    $suatt = "index.php?act=suacart&id=".$id_dh;
                     if($trangthai==0){
-                       $tt= "đăt hàng thành công";
+                       $tt= "chờ duyệt ";
                     }elseif($trangthai==1){
-                       $tt= "Đang vận chuyển";
+                       $tt= "Đã xác nhận ";
                     }elseif($trangthai==2){
-                       $tt= "đã giao";
-                    }
+                       $tt= "Đang vận chuyển";
+                    }elseif($trangthai==3){
+                        $tt= "đã giao";
+                     }
+                     
 
                    
                     echo '<tr>
                 <td> <input type="checkbox" name="" id=""></td>
+             
                 <td>'.$user.'</td>
                 <td>'.$name.' </td>
                 <td>'.$madh.' </td>
@@ -43,7 +49,7 @@
                 <td>'.$tel.' </td>
                 <td>'.$pthuctt.' </td>
                 <td>'.$tt.' </td>
-            
+                <td><a href="'.$suatt.' "><input type="button" value="sửa"></a>
                  </tr>';
                 }
 
@@ -54,6 +60,7 @@
 
                 <div class="border-top">
                     <div class="card-body">
+             
                         <input type="button" value="CHỌN TẤT CẢ " class="btn btn-primary">
                         <input type="button" value="BỎ CHỌN TẤT CẢ " class="btn btn-primary">
                         <input type="button" value="XÓA CÁC MỤC ĐÃ CHỌN  " class="btn btn-primary">
@@ -68,20 +75,7 @@
 
             ?>
 
-            <div class="phantrang">
-                <?php
-                $limit = 15;
-                $all_row = alll_row_donhang();
-                foreach($all_row as $row_page):
-                    $all_page = ceil($row_page[0] / $limit);
-                    for($i = 1; $i < $all_page; $i++): ?>
-                        <a href="index.php?act=listdh&page=<?php echo $i ?>" style="background-color: <?php if($_GET['page'] == $i) {  echo 'red';} ?>">
-                            <?php echo $i ?>
-                        </a>
-                    <?php endfor ?>
-                <?php endforeach ?>
-            </div>
-
+         
 
 
 
@@ -91,17 +85,3 @@
 
     </div>
 </div>
-<style>
-    .phantrang>a {
-        width: 50px;
-        height: 20px;
-        padding: 5px 15px 5px 5px;
-        background-color: black;
-        color: white;
-    }
-
-    .phantrang {
-        margin-left: 400px;
-        margin-top: 100px;
-    }
-</style>

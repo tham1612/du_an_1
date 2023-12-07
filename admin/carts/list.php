@@ -59,20 +59,7 @@
 
             ?>
 
-            <div class="phantrang">
-                <?php
-                $limit = 10;
-                $all_row = alll_row_carts();
-                foreach($all_row as $row_page):
-                    $all_page = ceil($row_page[0] / $limit);
-                    for($i = 1; $i < $all_page; $i++): ?>
-                        <a href="index.php?act=listsp&page=<?php echo $i ?>" style="background-color: <?php if($_GET['page'] == $i) {  echo 'red';} ?>">
-                            <?php echo $i ?>
-                        </a>
-                    <?php endfor ?>
-                <?php endforeach ?>
-            </div>
-
+           
 
 
 
@@ -82,17 +69,3 @@
 
     </div>
 </div>
-<style>
-    .phantrang>a {
-        width: 50px;
-        height: 20px;
-        padding: 5px 15px 5px 5px;
-        background-color: black;
-        color: white;
-    }
-
-    .phantrang {
-        margin-left: 400px;
-        margin-top: 100px;
-    }
-</style>

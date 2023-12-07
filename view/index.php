@@ -2,6 +2,11 @@
 
 session_start();
 ob_start();
+function check_input($data){
+    $data=trim($data);
+    $data=htmlspecialchars($data);
+    return $data;
+}
 if(!isset($_SESSION['giohang']))
     $_SESSION['giohang'] = [];
 include "../model/pdo.php";
@@ -116,18 +121,21 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
 
             break;
         case "edit_taikhoan":
-            if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+
                 $pass = $_POST['pass'];
                 $user = $_POST['user'];
                 $email = $_POST['email'];
                 $diachi = $_POST['diachi'];
                 $tel = $_POST['tel'];
                 $id_tk = $_POST['id_tk'];
-                update_taikhoan($id_tk, $user, $pass, $diachi, $tel);
+                update_taikhoan($id_tk, $user, $pass, $email, $diachi, $tel);
                 $_SESSION['user'] = checkuser($user, $pass);
-                echo "<script>window.location.href='index.php?act=edit_taikhoan';</script>";
+
+                header('location:index.php?act=edit_taikhoan');
             }
             include "taikhoan/edit_taikhoan.php";
+
             break;
         case 'quenmk':
 
@@ -277,7 +285,7 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                     }
                     unset($_SESSION[$key]);
                 }
-                header('locatinon:index.php');
+                header('locatinon:theodoionhang.php');
             }
 
 
@@ -303,25 +311,23 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case 'trangthai':
             if(isset($_POST['tt']) && ($_POST['tt'] != "")) {
-                $tt1 = $_POST['tt'];
+                $tt1 = check_input($_POST['tt']);
                 $trangthai0 = loadall_trangthai($tt1);
                 if(isset($trangthai0)) {
                     foreach($trangthai0 as $trangthai1) {
                         extract($trangthai1);
                         if($trangthai == 0) {
-                          
+
                         } elseif($trangthai == 1) {
-                           
+
                         } elseif($trangthai == 2) {
+
+                        } elseif($trangthai == 3) {
                             echo '<script>alert("đơn hàng của bạn được giao thành công , hãy đánh giá và cho shop 5 sao nhá");</script>';
                         }
-                       
-                       
-                       
-            
-                        
+
                     }
-                    
+
 
                 }
                 if(empty($trangthai0)) {
@@ -330,20 +336,41 @@ if(isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
 
             }
-          
+
             /*  $donhang=loadone_cart($tt1);
           $trangthai=loadall_trangthai($tt1); */
             include "theodoidonhang.php";
             break;
         case 'bill':
-            if(isset($_POST['chitiet'])){
-                $id=$_POST['id'];
-                $bill=load_bill($id);                             
+            if(isset($_POST['chitiet'])) {
+                $id = $_POST['id'];
+            
             }
-           /*  echo "</pre>";
-            print_r($bill);
-            die; */
+            if(isset($_POST['suatt'])){
+                $id = $_POST['id'];
+           
+                $ttsua=load_one_donhang($id);
+                header('loaction:index.php?act=suatt.php');
+             }
+            
+            $bill = load_bill($id);
+            /*  echo "</pre>";
+             print_r($bill);
+             die; */
             include "bill.php";
+            break;
+        case 'suatt':
+            if(isset($_POST['suatt'])){
+                $id = $_POST['id'];
+           
+                $ttsua=load_one_donhang($id);
+               
+             }
+                $id = $_POST['id'];
+           
+            $ttsua=load_one_donhang($id);
+          
+            include "suatt.php";
             break;
         default:
             //code//
