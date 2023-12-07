@@ -159,7 +159,7 @@
                                         <div class="item">
                                             <div class="grid_item ">
                                                 <figure>
-                                                    <span class="ribbon off">-30%</span>
+                                        
                                                     <a href="' . $linksp . '">
                                                         <img class="img-fluid lazy" src="' . $hinh . '"  alt=""   height="400px"width="400px">
                                                     
