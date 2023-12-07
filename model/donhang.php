@@ -42,10 +42,10 @@ function showtt($iddh){
   return $sp;
      
 }
-function result_donhang($limit,$start){
+function result_donhang(){
  
-  $sql="SELECT donhang.madh ,donhang.tongdonhang ,donhang.pthuctt,donhang.name ,donhang.email,donhang.diachi,donhang.tel,donhang.trangthai, taikhoan.user 
-  from donhang LEFT JOIN taikhoan on donhang.id_tk=taikhoan.id_tk order by donhang.id_dh desc LIMIT $start,$limit;";
+  $sql="SELECT  donhang.id_dh,donhang.madh ,donhang.tongdonhang ,donhang.pthuctt,donhang.name ,donhang.email,donhang.diachi,donhang.tel,donhang.trangthai, taikhoan.user 
+  from donhang LEFT JOIN taikhoan on donhang.id_tk=taikhoan.id_tk order by donhang.id_dh desc ";
   $result = pdo_query($sql);
   return $result;
 }
@@ -55,11 +55,11 @@ function alll_row_donhang(){
   return $result;
 }
 
-function result_carts($limit,$start){
+function result_carts(){
  
   $sql="SELECT carts.id_cart, carts.soluong, carts.dongia ,carts.tensp, carts.img, donhang.madh 
   from carts left JOIN donhang on donhang.id_dh=carts.id_dh group by carts.id_cart 
-  order by carts.id_cart desc LIMIT $start,$limit;";
+  order by carts.id_cart desc ;";
   $result = pdo_query($sql);
   return $result;
 }
@@ -70,23 +70,23 @@ function alll_row_carts(){
 }
 function loadone_carts($id)
 {
-    $sql = "select *  from carts where id_cart=" . $id;
+    $sql = "select *  from donhang where id_dh=" . $id;
     $dm = pdo_query_one($sql);
     return $dm;
 }
-/* function update_carts($id,$tt){
+function update_carts($id,$tt){
   
-  $sql="update carts set trangthai='".$tt."' where id_cart=" .$id;
+  $sql="update donhang set trangthai='".$tt."' where id_dh=" .$id;
   pdo_execute($sql);
-} */
-function update_carts($id, $tt) {
+}
+/* function update_carts($id, $tt) {
   $conn = pdo_get_connection();
   $sql = "UPDATE donhang SET trangthai = :tt WHERE id_dh = :id";
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(':tt', $tt);
   $stmt->bindParam(':id', $id);
   $stmt->execute();
-}
+} */
 
 function loadall_carts()
 {
@@ -108,11 +108,23 @@ function loadall_trangthai($tt1=""){
   $listdonhang=pdo_query($sql);
   return $listdonhang;
 }
+
+function loadone_donhang($id_dh){
+  $sql="select * from donhang where id_dh=$id_dh";
+  $t=pdo_query_one($sql);
+  return $t;
+}
+function load_one_donhang($id){
+  $sql="select * from donhang where id_dh=$id";
+  $t=pdo_query_one($sql);
+  return $t;
+}
 function load_bill($id){
-  $sql=" SELECT carts.tensp,carts.img,carts.dongia,carts.soluong,donhang.trangthai FROM carts LEFT JOIN donhang on donhang.id_dh=carts.id_dh WHERE carts.id_dh=".$id;
+  $sql="SELECT carts.tensp,carts.dongia,carts.soluong,donhang.trangthai,sanpham.img FROM carts LEFT JOIN donhang on donhang.id_dh=carts.id_dh
+   LEFT JOIN sanpham on sanpham.id_pr=carts.id_pr WHERE donhang.id_dh= $id";
  
-  $dm = pdo_query_one($sql);
-  return $dm;
+  $listdonhang=pdo_query($sql);
+  return $listdonhang;
 }
 function loadone_cart($tt1){
   $sql="select * from sanpham where madh=".$tt1;

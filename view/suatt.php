@@ -38,24 +38,23 @@
     <div class="bg_gray">
         <div class="container margin_30">
             <caption>
-                <h1> Cập Nhật Tài Khoản</h1>
+                <h1> Cập Nhật Thông Tin Đơn Hàng</h1>
             </caption>
-           
-            <form action="index.php?act=edit_taikhoan" method="post" >
             <?php
-            if (isset($_SESSION['user']) && (is_array($_SESSION['user']))) {
-                extract($_SESSION['user']);
-             
-            }
-            ?>
+          if(empty(   $ttsua)):    echo "</pre>";
+          print_r( $ttsua);
+          die;?>
+           <?php foreach ( $ttsua as $key => $value) :
+                # code...             
+           ?>
+          
+            
+            <form action="index.php?act=updatett" method="post" >
                 <div class="form-group">
-                    <label for="">User:</label>
-                    <input type="text" class="form-control" required name="user" value="<?= $user ?>">
+                    <label for="">Tên người nhận:</label>
+                    <input type="text" class="form-control" required name="user" value="<?= $name?>">
                 </div>
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="" required name="pass" value="<?= $pass ?>">
-                </div>
+               
                 <div class="form-group">
                     <label for="">Email:</label>
                     <input type="email" class="form-control" id="" required name="email" value="<?= $email ?>">
@@ -68,10 +67,12 @@
                     <label for="">tel:</label>
                     <input type="text" class="form-control" name="tel" required value="<?= $tel ?>">
                 </div>
-                <input type="hidden" name="id_tk"value="<?php if(isset($id_tk)&&($id_tk)>0) echo $id_tk; ?>">
-                <input type="submit" class="btn btn_1 " name="capnhat" value="Cập nhập"> 
+                <input type="hidden" name="id_dh"value="<?php if(isset($id_dh)&&($id_dh)>0) echo $id_dh; ?>">
+                <button type="submit" class="btn btn_1 " name="capnhat">Cập nhập </button>
                 <button type="reset" class="btn btn_1 ">Nhập lại</button>
             </form>
+            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 

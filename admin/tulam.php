@@ -192,8 +192,8 @@
                                 <li class="sidebar-item"><a href="index.php?act=thongke" class="sidebar-link"><i
                                             class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Thống kê sản phẩm-danh mục
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><i
-                                            class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery
+                                <li class="sidebar-item"><a href="index.php?act=thongkesp" class="sidebar-link"><i
+                                            class="mdi mdi-multiplication-box"></i><span class="hide-menu">Thống kê sp bán chạy 
                                         </span></a></li>
                                 <li class="sidebar-item"><a href="#" class="sidebar-link"><i
                                             class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar
