@@ -192,10 +192,10 @@ if (isset($_GET['act'])) {
             include "thongke/thongkesp-dm.php";
             break;
         case 'thongkesp':
-            if(isset($_POST['check'])){
-            $bd=$_POST['bd'];
-            $kt=$_POST['kt'];
-            $dsthongke = load_thongke_sanpham_banchay($bd,$kt);
+            if (isset($_POST['check'])) {
+                $bd = $_POST['bd'];
+                $kt = $_POST['kt'];
+                $dsthongke = load_thongke_sanpham_banchay($bd, $kt);
             }
             include "thongke/thongke-spbanchay.php";
             break;
@@ -204,6 +204,11 @@ if (isset($_GET['act'])) {
             $dsthongke = load_thongke_sanpham_danhmuc();
             include "thongke/bieudosp-dm.php";
             break;
+        case 'doanhthu':
+            $dsthongke = doanhthu();
+            include "thongke/doanhthu.php";
+            break;
+
 
 
         default:

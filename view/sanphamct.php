@@ -209,27 +209,25 @@
 
                             </div>
                             <!-- /row -->
-                            <?php /* if(isset($_SESSION['user'])) { */
+                         
+                                <form action="index.php?act=sanphamct&idsp =<?= $id_pr ?>" method="post">
+                                <input type="hidden" name="id_pr" value="<?php echo $id_pr ?>">
+                                <?php if(isset($_SESSION['user'])) {
                                 ?>
-                                <form action="index.php?act=sanphamct&idsp =<?= $idpro ?>" method="post">
-
                                     <input type="text" placeholder="nhap noi dung binh luan " name="noidung">
+                                 
                                     <input type="submit" name="guibinhluan" value="Gửi ">
-
+                                    <?php } ?>
                                 </form>
-                            <?php /*  } else { */ ?>
+                           
 
-                                <?php
-                              /*   echo "<script>alert('vui lòng đăng nhập để binh luan')</script>"; */
-                                ?>
-
-                            <?php /* }  */?>
+                         
 
 
 
                         </div>
                            
-                            <p class="text-end"><a href="leave-review.html" class="btn_1">Leave a review</a></p>
+                          
                         </div>
                         <!-- /card-body -->
                     </div>

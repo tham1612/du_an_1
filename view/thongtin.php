@@ -56,20 +56,23 @@
                     <form action=" index.php?act=thongtin" method="post">
                         <div class="step first">
                             <h3>1.Thông tin người nhận và địa chỉ thanh toán</h3>
+                            <?php if (isset($_SESSION['user']) && (is_array($_SESSION['user']))) {
+                                extract($_SESSION['user']);
 
+                            } ?>
                             <div class="tab-content checkout">
                                 <div class="tab-pane fade show active" id="tab_1" role="tabpanel"
                                     aria-labelledby="tab_1">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Tên người nhận" required
+                                        <input type="text" class="form-control" value="<?php echo $user ?>" required
                                             name="name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email" required
+                                        <input type="email" class="form-control" value="<?php echo $email ?>" required
                                             name="email">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="địa chỉ" required
+                                        <input type="text" class="form-control" value="<?php echo $diachi ?>" required
                                             name="diachi">
                                     </div>
 
@@ -77,7 +80,7 @@
 
                                     <!-- /row -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="số điện thoại" name="tel">
+                                        <input type="text" class="form-control" value="<?php echo $tel ?>" name="tel">
                                     </div>
                                     <hr>
 
@@ -95,9 +98,16 @@
                         <h3>2. Thanh toán và vận chuyển</h3>
                         <ul>
                             <li>
+                                <label class="container_radio">Thanh toán khi nhận hàng<a href="#0" class="info"
+                                        data-bs-toggle="modal" data-bs-target="#payments_method"></a>
+                                    <input type="radio" name="pttt" value="Thanh toán khi nhận hàng" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
                                 <label class="container_radio">Thẻ tín dụng<a href="#0" class="info"
                                         data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-                                    <input type="radio" name="pttt" checked value="atm">
+                                    <input type="radio" name="pttt"  value="atm">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -108,13 +118,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
-                            <li>
-                                <label class="container_radio">Thanh toán khi nhận hàng<a href="#0" class="info"
-                                        data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-                                    <input type="radio" name="pttt" value="Thanh toán khi nhận hàng">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
+
 
                         </ul>
                         <div class="payment_info d-none d-sm-block">
@@ -155,14 +159,14 @@
                             <?php
                             $i = 0;
                             $tong = 0;
-                            if(isset($_SESSION['user'])) {
+                            if (isset($_SESSION['user'])) {
                                 $userID = $_SESSION['user']['id_tk'];
                                 $key = "giohang-$userID";
-                                if(!empty($_SESSION[$key])) {
-                                    foreach($_SESSION[$key] as $arr) {
+                                if (!empty($_SESSION[$key])) {
+                                    foreach ($_SESSION[$key] as $arr) {
                                         $tong += $arr['tt'];
                                         echo '  <ul>                               
-                                             <li class="clearfix"><em>'.$arr['sl'].'x '.$arr['tensp'].'</em> <span>'.$arr['giasp'].'</span></li>                                       
+                                             <li class="clearfix"><em>' . $arr['sl'] . 'x ' . $arr['tensp'] . '</em> <span>' . $arr['giasp'] . '</span></li>                                       
                                             
                                              </ul> ';
                                     }
@@ -196,7 +200,7 @@
                             <input type="hidden" name="iddh" value="<?= $iddh ?>">
 
                             <input type="submit" value="Xác nhận thanh toán" name="thanhtoan">
-                            <input type="submit" value="Thanh toán MOMO atm" name="momo"> </form>
+                             </form>
                             <!--  <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
                                 action="xulythanhtoanmomo.php">
                                 <input type="submit" value="Thanh toán MOMO atm" name="momo">

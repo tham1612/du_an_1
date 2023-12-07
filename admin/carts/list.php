@@ -9,7 +9,7 @@
                     <th></th>
                     <th>MÃ ĐƠN HÀNG</th>
                     <th>TÊN SẢN PHẨM</th>
-                    <th>HÌNH</th>
+                   
                     <th>GIÁ </th>
                     <th>SỐ LƯỢNG</th>
                  
@@ -32,7 +32,7 @@
                 <td> <input type="checkbox" name="" id=""></td>
                 <td>'.$madh.'</td>
                 <td>'.$tensp.' </td>
-                <td>'.$img.' </td>
+              
                 <td>'.$dongia.' </td>
                 <td>'.$soluong.' </td>
                

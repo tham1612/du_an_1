@@ -78,46 +78,55 @@
     .anh {
         width: 80px;
     }
+
     .button1 {
-            position: relative;
-            background-color: #04AA6D;
-            border: none;
-            font-size: 16px;
-            color: #FFFFFF;
-            padding: 8px 16px;
-            width: 50px;
-            text-align: center;
-            transition-duration: 0.4s;
-            text-decoration: none;
-            overflow: hidden;
-            cursor: pointer;
-        }
+        position: relative;
+        background-color: #04AA6D;
+        border: none;
+        font-size: 16px;
+        color: #FFFFFF;
+        padding: 8px 16px;
+        width: 50px;
+        text-align: center;
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+    }
 
-        .button1:after {
-            content: "";
-            background: #f1f1f1;
-            display: block;
-            position: absolute;
-            padding-top: 3100%;
-            padding-left: 30%;
-            margin-left: -20px !important;
-            margin-top: -120%;
-            opacity: 0;
-            transition: all 0.8s
-        }
+    .button1:after {
+        content: "";
+        background: #f1f1f1;
+        display: block;
+        position: absolute;
+        padding-top: 3100%;
+        padding-left: 30%;
+        margin-left: -20px !important;
+        margin-top: -120%;
+        opacity: 0;
+        transition: all 0.8s
+    }
 
-        .button1:active:after {
-            padding: 0;
-            margin: 0;
-            opacity: 1;
-            transition: 0s
-        }
-        .mm{
-            background: red;
-        }
-        .m2{
-            width: 200px;
-        }
+    .button1:active:after {
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transition: 0s
+    }
+
+    .mm {
+        background: red;
+    }
+
+    .m2 {
+        width: 200px;
+    }
+
+    .m3 {
+        background-color: yellow;
+        width: 150px;
+        color: black;
+    }
 </style>
 
 <body>
@@ -128,7 +137,7 @@
 
 
                 <div class="container margin_60_35">
-                    <?php if(isset($bill)):
+                    <?php if (isset($bill)):
                         /*  echo "<pre>";
                          print_r($bill);
                          die; */
@@ -150,15 +159,18 @@
                                         <th>số lượng</th>
                                         <th>Giá</th>
                                         <th>Trang thai</th>
-                                  
+                                        <th></th>
+
+
 
 
                                     </tr>
                                     <?php
-                                    foreach($bill as $bill):
-                                        $hinhpath = "../upload/".$bill["img"];
-                                        if(is_file($hinhpath)) {
-                                            $hinh = "<img src='".$hinhpath."'height=80'>";
+                                    foreach ($bill as $bill):
+                                       
+                                        $hinhpath = "../upload/" . $bill["img"];
+                                        if (is_file($hinhpath)) {
+                                            $hinh = "<img src='" . $hinhpath . "'height=80'>";
 
                                         } else {
                                             $hinh = "no photo";
@@ -178,20 +190,24 @@
                                                 <?php echo $bill["dongia"] ?>
                                             </td>
                                             <td>
-                                                <?php if($bill["trangthai"] == 0) {
+                                                <?php if ($bill["trangthai"] == 0) {
                                                     echo "chờ duyệt ";
-                                                } elseif($bill["trangthai"] == 1) {
+                                                } elseif ($bill["trangthai"] == 1) {
                                                     echo "Đã xác nhận ";
-                                                } elseif($bill["trangthai"] == 2) {
+                                                } elseif ($bill["trangthai"] == 2) {
                                                     echo "Đang vận chuyển";
-                                                } elseif($bill["trangthai"] == 3) {
+                                                } elseif ($bill["trangthai"] == 3) {
                                                     echo "đã giao";
                                                 }
                                                 ?>
                                             </td>
-                                           
+                                            <?php if ($bill["trangthai"] == 3): ?>
+                                                <td><a href="index.php ?act=binhluan&id="<?php echo $id_pr ?>><input type="submit" value="Đánh giá" class="button1 m3"></a></td>
+                                            <?php endif; ?>
 
 
+
+                                            <input type="hidden" name="id" value="<?php echo $id_pr ?>">
                                         </tr>
                                     <?php endforeach; ?>
 
@@ -203,8 +219,8 @@
                         <!-- /products_carousel -->
 
                     <?php endif; ?>
-           
-                    <a href="index.php">         <input  class="button1  m2" value="tiếp tục mua hàng" ></a>
+
+                    <a href="index.php"> <input class="button1  m2" value="tiếp tục mua hàng"></a>
 
                 </div>
                 <!-- /row -->

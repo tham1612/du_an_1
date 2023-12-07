@@ -54,7 +54,7 @@
                                                 Limited items available at this price
                                             </p>
                                             <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                                    href="locsp.html" role="button">Shop Now</a></div>
+                                                    href="#" role="button">Shop Now</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                                 Limited items available at this price
                                             </p>
                                             <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                                    href="locsp.html" role="button">Shop Now</a></div>
+                                                    href="#" role="button">Shop Now</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                                 Lightweight cushioning and durable support with a Phylon midsole
                                             </p>
                                             <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                                    href="locsp.html" role="button">Shop Now</a></div>
+                                                    href="#" role="button">Shop Now</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                                 </a>
                                                 <div class="price_box">
                                                     <span class="new_price">' . $price . '</span>
-                                                    <span class="old_price">$60.00</span>
+                                                    
                                                 </div>
                                                 <ul>
                                                     <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -207,7 +207,7 @@
                                         <span class="new_price">$90.00</span>
                                         <span class="old_price">$170.00</span>
                                     </div>
-                                    <a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a>
+                                    <a class="btn_1" href="#" role="button">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -316,13 +316,12 @@
 
             <div class="container margin_60_35">
                 <div class="main_title">
-                    <h2>Latest News</h2>
-                    <span>Blog</span>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+                    <h2>Bản Tin Mới</h2>
+                   
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <a class="box_news" href="blog.html">
+                        <a class="box_news" href="#">
                             <figure>
                                 <img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-1.jpg" alt=""
                                     width="400" height="266" class="lazy">
@@ -339,7 +338,7 @@
                     </div>
                     <!-- /box_news -->
                     <div class="col-lg-6">
-                        <a class="box_news" href="blog.html">
+                        <a class="box_news" href="#">
                             <figure>
                                 <img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-2.jpg" alt=""
                                     width="400" height="266" class="lazy">
@@ -356,7 +355,7 @@
                     </div>
                     <!-- /box_news -->
                     <div class="col-lg-6">
-                        <a class="box_news" href="blog.html">
+                        <a class="box_news" href="#">
                             <figure>
                                 <img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-3.jpg" alt=""
                                     width="400" height="266" class="lazy">
@@ -373,7 +372,7 @@
                     </div>
                     <!-- /box_news -->
                     <div class="col-lg-6">
-                        <a class="box_news" href="blog.html">
+                        <a class="box_news" href="#">
                             <figure>
                                 <img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-4.jpg" alt=""
                                     width="400" height="266" class="lazy">

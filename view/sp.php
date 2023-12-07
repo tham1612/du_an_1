@@ -47,7 +47,7 @@
                         <div class="container">
                             <div class="d-flex justify-content-center">
                                 <h1>
-                                Nước hoa thời thượng
+                                <?= $namedm; ?>
                                 </h1>
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                 </div>
                 <!-- /toolbox -->
                 <div class="row small-gutters">
-                    <caption class="tt"><h1 >  <?= $namedm; ?></h1></caption>
+                    <caption class="tt"><h1 >  </h1></caption>
                     <?php
                     
                     $i = 0;
