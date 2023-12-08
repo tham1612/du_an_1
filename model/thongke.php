@@ -21,7 +21,7 @@ FROM
 WHERE
   ngaymua BETWEEN '" . $bd . "' AND '" . $kt . "' 
 GROUP BY sanpham.id_pr, sanpham.name  
-ORDER BY `soluong` ASC;";
+ORDER BY `soluong` desc;";
   return pdo_query($sql);
 }
 function doanhthu()
