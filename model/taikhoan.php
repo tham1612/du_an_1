@@ -18,6 +18,12 @@ function checkemail($email){
     $sp=pdo_query_one($sql);
     return $sp;
 }
+function checkusermail($user, $email)
+{
+    $sql = "SELECT * FROM taikhoan WHERE user='" . $user . "' OR email='" . $email . "'";
+    $taikhoan = pdo_query($sql);
+    return $taikhoan;
+}
 function loadall_taikhoan(){
     $sql="select * from taikhoan order by id_tk desc";
     $listtaikhoan=pdo_query($sql);

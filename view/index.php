@@ -84,20 +84,36 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $email = $_POST['email'];
                 $pass = $_POST['pass'];
                 $user = $_POST['user'];
-                insert_taikhoan($user, $pass, $email);
-                $thongbao1 = '<script>
-                var thongbao = new Object();
-                thongbao.name = "bạn đã đăng kí tài khoản thành công!" ;
-               
-               
-                thongbao.intro = function() {
-                    alert( "bạn đã đăng kí tài khoản thành công!");
-        
-        
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    echo '<script>alert("Lỗi: Email không hợp lệ!");</script>';
+                    echo "<script>window.location.href='index.php?act=dangky';</script>";
+                    exit();
                 }
-              
-                thongbao.intro();
-            </script>';
+
+                // Check if the password contains both letters and numbers and is at least 6 characters long
+                if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/', $pass)) {
+                    echo '<script>alert("Lỗi: Mật khẩu phải chứa ít nhất một chữ và một số, và dài ít nhất 6 ký tự!");</script>';
+                    echo "<script>window.location.href='index.php?act=dangky';</script>";
+                    exit();
+                }
+
+                // Check if the username or email already exists in the database
+                if (checkusermail($user, $email)) {
+                    echo '<script>alert("Lỗi: Tài khoản hoặc tên người dùng đã tồn tại!");</script>';
+                    echo "<script>window.location.href='index.php?act=dangky';</script>";
+                } else {
+                    // Check if the username contains whitespace
+                    if (strpos($user, ' ') !== false) {
+                        echo '<script>alert("Lỗi: Tên người dùng không được chứa khoảng trắng!");</script>';
+                        echo "<script>window.location.href='index.php?act=dangky';</script>";
+                        exit();
+                    }
+
+                    // Continue with the registration logic
+                    insert_taikhoan($user, $pass, $email);
+                    echo '<script>alert("Đăng ký thành công");</script>';
+                    echo "<script>window.location.href='index.php?act=dangky';</script>";
+                }
             }
             include "taikhoan/dangki-dangnhap.php";
             break;
@@ -128,6 +144,16 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $diachi = $_POST['diachi'];
                 $tel = $_POST['tel'];
                 $id_tk = $_POST['id_tk'];
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    echo '<script>alert("Lỗi: Email không hợp lệ!");</script>';
+                    // Có thể thêm chuyển hướng hoặc các xử lý khác tùy thuộc vào yêu cầu của bạn
+                }
+
+                // Kiểm tra xem số điện thoại có đúng định dạng không
+                if (!preg_match('/^0[0-9]{9}$/', $tel)) {
+                    echo '<script>alert("Lỗi: Số điện thoại không hợp lệ!");</script>';
+                    // Có thể thêm chuyển hướng hoặc các xử lý khác tùy thuộc vào yêu cầu của bạn
+                }
                 update_taikhoan($id_tk, $user, $pass, $email, $diachi, $tel);
                 $_SESSION['user'] = checkuser($user, $pass);
 
